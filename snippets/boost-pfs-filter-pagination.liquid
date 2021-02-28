@@ -1,0 +1,41 @@
+<ul>
+  
+  
+  {%- if paginate.previous -%}
+    <li><a href="{{ paginate.previous.url }}">←</a></li>
+  {%- else -%}
+    <li class="boost-pfs-filter-pagination-disabled">
+      <span>
+        <img src="https://cdn.shopify.com/s/files/1/0262/7046/6134/t/17/assets/flecha-izq.png?v=1608320872" alt="flecha-izquierda" />
+      </span>
+    </li>
+  {%- endif -%}
+
+  {%- for part in paginate.parts -%}
+    {%- if part.is_link -%}
+      <li><a class="test-pagination" href="{{ part.url }}">{{ part.title }}</a></li>
+    {%- elsif part.title == '&hellip;' -%}
+      <li><span>...</span></li>
+    {%- else -%}
+      <li><span class="boost-pfs-filter-pagination-active">{{ part.title }}</span></li>
+    {%- endif -%}
+  {%- endfor -%}
+
+  {%- if paginate.next -%}
+  
+    <li>
+      <a class="boost-pfs-filter-final-pagination" href="{{ paginate.next.url }}">
+        <img src="https://cdn.shopify.com/s/files/1/0262/7046/6134/t/17/assets/flecha-der.png?v=1608321240" alt="flecha-derecha" />
+      </a>
+    </li>
+  
+  {%- else -%}
+    <li class="boost-pfs-filter-pagination-disabled">
+      <span>
+        <img src="https://cdn.shopify.com/s/files/1/0262/7046/6134/t/17/assets/flecha-der.png?v=1608321240" alt="flecha-derecha" />
+      </span>
+  </li>
+  {%- endif -%}
+  
+  
+</ul>

@@ -1,0 +1,40 @@
+<div class="page grid">
+  
+  <div class="item"></div>
+			
+  <div class="inside-page">
+
+    <h2 class="h3">{{ page.title }}</h2>
+
+    <div class="rte">
+
+      {{ page.content }}
+
+    </div>
+    
+     <div class="page-form">
+      {% form 'contact' %}
+
+        {% if form.posted_successfully? %}
+          <p class="note form-success">
+            Tu mensaje se ha enviado con éxito
+          </p>
+        {% endif %}
+
+        {{ form.errors | default_errors }}
+
+        <div class="top">
+          <input type="text" id="ContactFormName" name="contact[nombre]" placeholder="Nombre" autocapitalize="words" value="{% if form[nombre] %}{{ form[nombre] }}{% elsif customer %}{{ customer.name }}{% endif %}">
+          <input type="email" id="ContactFormEmail" name="contact[email]" placeholder="Email" autocorrect="off" autocapitalize="off" value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}">
+        </div>
+      
+        <textarea rows="10" id="ContactFormMessage" name="contact[body]" placeholder="Mensaje">{% if form.body %}{{ form.body }}{% endif %}</textarea>
+
+        <input type="submit" class="boton2" value="Enviar">
+
+      {% endform %}
+    </div>
+
+  </div>
+
+</div>

@@ -1,0 +1,95 @@
+<div id="minicart" class="">
+	
+	<div class="top">
+		<h3>Carro de compras:</h3>
+		<a class="cerrar">+</a>
+	</div>
+	
+	<div class="middle">
+		<ul>
+		</ul>
+	</div>
+	
+	<div class="bottom">
+		<div class="subtotal">
+			<div class="left">
+				Subtotal:
+			</div>
+			<div class="right">
+              <span class="cifra"></span>
+			</div>
+		</div>
+		<a class="boton" href="/cart">Ver Carrito</a>
+	</div>
+	
+</div>
+
+<script>
+  $(document).ready(function(){
+
+    $.fn.digits = function(){ 
+      return this.each(function(){ 
+        $(this).text( $(this).text().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") ); 
+      })
+    };
+
+    jQuery.get("/cart.js", function(data){ 
+      console.log(data.items);
+      var obj = data.items;
+      for(var i=0;i<obj.length;i++)
+      {
+
+        var titulo = obj[i]["product_title"];
+        var variante1 = obj[i]["variant_title"];
+        var varianteID = obj[i]["variant_id"];
+        if (variante1 == null) {
+          var variante = "";
+        } else {
+          var variante = variante1;
+        }
+
+        var precio1 = parseFloat(obj[i]["price"]);
+        var precio2 = precio1.toString();
+        var precio3 = precio2.substring(0, precio2.length - 2);
+        var precio = precio3.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.");
+        console.log(precio);
+
+        var cantidad = obj[i]["quantity"];
+        var imagen = obj[i]["image"];
+
+        var tr="<tr>";
+        var td1="<td colspan=70%><p class='titulo'>"+titulo+"</p><p class='variante'>"+variante+"</p><p class='precio'>$"+precio+"</p><p class='cantidad'>Cantidad: "+cantidad+"</p></td>";
+        var td2="<td colspan=30%><img class='mini-img' src='"+imagen+"' /></td></tr>";
+        
+        var proMini = "<li><div class='left'><h4>"+titulo+"</h4><h6>Cantidad: <span>"+cantidad+"</span></h6><h5>$"+precio+"</h5><i data-id='" + varianteID + "' class='quitar'></i></div><div class='right'><img src='"+imagen+"' alt='' /></div></li>";
+
+        $("#minicart .middle ul").append(proMini);
+        
+        $('#minicart .middle .left i.quitar').click(function(){
+          console.log('varianteID: ' + varianteID);
+          var borrarID = $(this).data('id');
+          Shopify.removeItem(borrarID, function(){
+            console.log('borrado!');
+          });
+          $(this).parent().parent().fadeOut(200);
+        });
+
+      }
+    }, 'json');
+
+    jQuery.get("/cart.js", function(data){ 
+      console.log(data);
+      var total1 = data.total_price;
+      var total2 = total1.toString();
+      var total3 = total2.substring(0, total2.length - 2);
+      var total = total3.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.");
+      
+      var itemcount = data.item_count;
+      
+      console.log(total);
+      $("#minicart .cifra").append('$'+total);
+      $("header .icons li a.cart .count").html(itemcount);
+    }, 'json');
+
+  });    
+</script>

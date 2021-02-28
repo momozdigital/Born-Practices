@@ -1,0 +1,45 @@
+<div class="banner-text" style="background: {{ section.settings.color }};">
+
+	<div class="clear">
+		<h2>{{ section.settings.title }}</h2>
+		{{ section.settings.bajada }}
+		<a class="boton" href="{{ section.settings.link }}">Ver Más</a>
+    </div>
+			
+</div>
+
+{% schema %}
+{
+  "name": "Banner Text",
+  "settings": [
+    {
+  	  "type": "url",
+  	  "id": "link",
+  	  "label": "Link URL"
+    },
+    {
+  	  "type": "text",
+  	  "id": "title",
+  	  "label": "Title"
+    },
+    {
+  	  "type": "textarea",
+  	  "id": "bajada",
+  	  "label": "Text",
+	  "default" : "<p>Fusce suscipit sapien dictum, varius ipsum eu, elementum quam.</p>"
+    },
+    {
+  	  "type": "text",
+  	  "id": "color",
+  	  "label": "Background Color",
+	  "default" : "#EAFED7"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Banner Text",
+      "category": "Text"
+    }
+  ]
+}
+{% endschema %}

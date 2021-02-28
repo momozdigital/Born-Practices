@@ -1,0 +1,29 @@
+<div class="featured-collection">
+  <h3>{{ section.settings.title }}</h3>
+  <ul class="grid">
+    {% assign featured = section.settings.featured_collection %}
+    {% for product in collections[featured].products limit: 4 %}
+    {% include 'product-item' %}
+    {% endfor %}
+  </ul>
+</div>
+
+{% schema %}
+{
+  "name": "Cart Collection",
+  "class": "index-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Title"
+    },
+    {
+      "type": "collection",
+      "id": "featured_collection",
+      "label": "Collection"
+    }
+  ]
+}
+{% endschema %}

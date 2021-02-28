@@ -1,0 +1,314 @@
+{% assign on_sale = false %}
+{% if product.compare_at_price > product.price %}
+  {% assign on_sale = true %}
+{% endif %}
+
+
+
+{%- assign pick_up_availabilities = variant.store_availabilities | where: 'pick_up_enabled', true -%}
+{% for pickup in pick_up_availabilities %}
+  {{ forloop.index }}
+  {{ pickup.available }}
+  {{ pickup.location.address }}
+  {{ pickup.location.name }}
+{% endfor %}
+
+<div class="boost-pfs-filter-product-item boost-pfs-filter-product-item-grid boost-pfs-filter-grid-width-3 boost-pfs-filter-grid-width-mb-2 has-bc-swap-image boost-pfs-action-list-enabled" data-id="4936317698134">
+    
+  <div class="boost-pfs-filter-product-item-inner">
+                
+      
+        <div class="boost-pfs-filter-product-item-image boost-custom-momoz">
+          
+            <a href={{ product.url | within: collection }}
+               class="boost-pfs-filter-product-item-image-link boost-pfs-action-overlay" 
+              >
+              
+              <!--<img src={{ product | img_url: 'grande' }} style="mix-blend-mode: multiply;
+    			filter: brightness(0.99);" />-->
+              
+              {% if product.images.size == 1 %} 
+                   <img  src={{  product.images[0] | img_url: 'grande' }} style="mix-blend-mode: multiply;filter: brightness(0.99);">
+              {% else %}
+                   <img class="boost-pfs-filter-product-item-flip-image Image--lazyLoad lazyautosizes lazyloaded" src={{  product.images[1] | img_url: 'grande' }} style="mix-blend-mode: multiply;filter: inherit;">
+              	   <img class="boost-pfs-filter-product-item-main-image Image--lazyLoad lazyautosizes lazyloaded" src={{  product.images[0] | img_url: 'grande' }} style="mix-blend-mode: multiply;filter: inherit;">
+              {% endif %}
+              
+          	</a>
+          
+    	</div>
+    
+    	<div class="boost-pfs-filter-product-item-label"> 
+          
+            {% if on_sale %}
+              	<!--<span class="sale boost-pfs-filter-label"> Oferta </span> -->
+          	          
+          		{% assign precioOrig = product.compare_at_price  | divided_by: 100.0 %}
+          		{% assign precioOfer = product.price | divided_by: 100.0  %}
+          		{% assign calc = precioOrig | minus: precioOfer %}
+          		{% assign calc2 = calc | divided_by: precioOrig %}
+          		{% assign porc = calc2 | times: 100 %}         		
+          		<span class="sale boost-pfs-filter-label"> {{porc | round }}% OFF</span>
+          
+            {% endif %}
+          
+            {% unless product.available %}
+              	<span class="soldout boost-pfs-filter-label"> Agotado </span>
+            {% endunless %}	
+          
+          
+    	</div>
+      
+        <div class="boost-pfs-filter-product-bottom">  
+          	
+         	<p class="boost-pfs-filter-product-item-vendor">{{ product.vendor }}</p>
+          
+            <a href={{ product.url | within: collection }} 
+               class="boost-pfs-filter-product-item-title">
+              {{ product.title }}
+              {% assign sizeTitle = product.title | size %}
+              
+              {% if  sizeTitle < 32 %}
+                  <br><br>          
+              {% endif %}
+              
+            </a>
+
+          	<!--<div class="bottom-price-add">-->
+              
+              	<div class="remain">
+                  <p class="texto">
+                     {% if product.variants.first.inventory_management == "shopify" and product.variants.first.inventory_quantity > 0 and product.variants.first.inventory_quantity < 5 %}
+                    	<b>{{ product.variants.first.inventory_quantity }} EN STOCK</b>
+                     {% else %}	
+                    	<br>
+                     {% endif %}
+                  </p>
+                </div>
+          
+                <p class="boost-pfs-filter-product-item-price">
+                   {% if on_sale %}
+                      <span class="boost-pfs-filter-product-item-sale-price">
+                          <span class="money">{{ product.price | money }} </span>
+                      </span>
+                      <s>
+                          <span class="money">{{ product.compare_at_price | money }}</span>
+                      </s> 
+                   {% else %}
+                      <span class="boost-pfs-filter-product-item-regular-price">
+                        <span class="money"> 
+                          {{ product.price | money }} 
+                        </span>
+                      </span> 
+                   {% endif %}
+                </p>
+
+
+                {% if product.available %}
+                  <!-- <spam class="anadir">Añadir</spam> -->
+                {% else %}
+                  <spam class="avisame">¡Avísame!</spam>
+                {% endif %}
+
+                <span id="agregar-{{ product.id }}" 
+                      class="ver-producto {% if product.available %}add-product-cart {% else %}ver-agotado{% endif %}"
+                      style="cursor: pointer;"      
+                      >
+                  ver producto
+                </span>
+          		
+              
+          	<!--</div>-->
+                    
+        </div>
+    
+       	{% if product.available %}
+  
+            <a id="clickCapturerAdd-{{ product.id }}" class="clickCapturerAdd hideClickCapturer">
+              &nbsp;&nbsp;
+            </a>
+            <a class="clickCapturerAdd">&nbsp;&nbsp;
+            </a>
+
+
+        {% else %}
+
+            <a href="#" class="BIS_trigger" data-product-data="{{ product | json | escape }}">
+              ¿Quieres que te notifiquemos<br>cuando esté disponible?
+            </a>
+
+            <a id="clickCapturer" href="#" class="BIS_trigger" data-product-data="{{ product | json | escape }}">
+              ....
+            </a>
+
+        {% endif %}
+    
+    
+    </div>  
+  	
+  
+</div>
+
+
+
+<script>
+  
+  var vendor = '{{ product.vendor }}';
+  
+  $(document).ready(function(){
+	    
+    var proID = {{ product.id }};
+    
+    var varID = {% for variant in product.variants limit:1%}{{variant.id}}{% endfor%}
+       
+  
+    $('#clickCapturerAdd-'+proID).click(function(){
+      	
+      	/*
+        
+          console.log("Coleccion");
+          //var preventa = false;
+          var preventa = $('#isPre-'+proID).val();
+
+          console.log("preventa: "+preventa);
+
+          if(preventa=='YesPrev'){
+              //Mostrarpopup
+              console.log("Debería Mostrar PopUp");
+              $('#modalPreventa-'+proID).show();	
+          }
+          else{
+              add();
+              $('#minicart').addClass('show');   
+          }
+          
+      	*/
+        
+        
+      	
+      	add(proID);
+         
+ 		$('#minicart').addClass('show');
+            
+       
+          
+        
+      
+    });  
+    
+    $('#confirmarAgregar-'+proID).click(function(){    
+      	//add();
+        //$('#minicart').addClass('show');    
+        $('.container-popup').hide();	
+    });
+
+    function add(idProd){
+      
+      //---------------
+        
+        var preventa = $('#isPre-'+idProd).val();      	
+      
+       
+      	if(preventa=='YesPrev'|| vendor=='Bibs'){
+          
+          	
+        	$('#modalPreventa-'+idProd).show();
+        }
+      
+      //--------------
+      
+      window.alert = function() {};      
+      
+      var proID = {{ product.variants.first.id }};
+		
+      
+
+      var cantidad = $('.cantidad-select').val();
+    
+      
+      jQuery.get("/cart.js", function(data){ 
+        
+        var obj = data.items;
+        for(var i=0;i<obj.length;i++)
+        {
+
+          var varianteID = obj[i]["variant_id"];
+          var varianteStock = obj[i]["quantity"];
+          var comCart = varianteID + varianteStock;
+
+        }
+
+      }, 'json');
+    
+      
+      Shopify.addItem(proID, cantidad, function(){  
+        
+        $('#minicart .middle ul').empty();
+        $("#minicart .cifra").empty();
+
+        jQuery.get("/cart.js", function(data){ 
+          
+          var obj = data.items;
+          for(var i=0;i<obj.length;i++)
+          {
+
+            var titulo = obj[i]["product_title"];
+            var varianteID = obj[i]["variant_id"];
+            var variante1 = obj[i]["variant_title"];
+            if (variante1 == null) {
+              var variante = "";
+            } else {
+              var variante = variante1;
+            }
+
+            var precio1 = parseFloat(obj[i]["price"]);
+            var precio2 = precio1.toString();
+            var precio3 = precio2.substring(0, precio2.length - 2);
+            var precio = precio3.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.");
+            
+
+            var cantidad = obj[i]["quantity"];
+            var imagen = obj[i]["image"];
+
+            var proMini = "<li><div class='left'><h4>"+titulo+"</h4><h6>Cantidad: <span>"+cantidad+"</span></h6><h5>$"+precio+"</h5><i data-id='" + varianteID + "' class='quitar'></i></div><div class='right'><img src='"+imagen+"' alt='' /></div></li>";
+
+            $("#minicart .middle ul").append(proMini);
+
+            $('#minicart .middle .left i.quitar').click(function(){
+              
+              var borrarID = $(this).data('id');
+              Shopify.removeItem(borrarID, function(){
+                
+              });
+              $(this).parent().parent().fadeOut(200);
+            });
+
+          }
+        }, 'json');
+
+        jQuery.get("/cart.js", function(data){ 
+          
+          var total1 = data.total_price;
+          var total2 = total1.toString();
+          var total3 = total2.substring(0, total2.length - 2);
+          var total = total3.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.");
+
+          var itemcount = data.item_count;
+
+          
+          $("#minicart .cifra").append('$'+total);
+          $("header .icons li a.cart .count").html(itemcount);
+        }, 'json');
+
+        $('#minicart').addClass('show');
+
+      });
+                  
+
+
+    }
+
+
+  });  
+
+</script>

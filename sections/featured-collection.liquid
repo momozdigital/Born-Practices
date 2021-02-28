@@ -1,0 +1,84 @@
+{% assign featured = section.settings.featured_collection %}
+{% assign total_products = section.settings.total %}
+
+<div class="featured-collection">
+  <div class="clear">
+    
+    <h2 class="home-title">{{ section.settings.title }}</h2>
+    
+    <ul>
+      {% for product in collections[featured].products limit: total_products %}
+      
+      	{% include 'product-item' %}
+      
+      {% endfor %}
+    </ul>
+    
+    
+    <a class="boton" href="{{ collections[featured].url }}">Ver Más</a>
+    
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Featured Collection",
+  "class": "index-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Featured collection"
+    },
+    {
+      "type": "collection",
+      "id": "featured_collection",
+      "label": "Collection"
+    },
+    {
+      "type": "select",
+      "id": "total",
+      "label": "Cantidad",
+      "default": "4",
+      "options": [
+        {
+          "value": "4",
+          "label": "4"
+        },
+        {
+          "value": "8",
+          "label": "8"
+        },
+        {
+          "value": "12",
+          "label": "12"
+        },
+        {
+          "value": "16",
+          "label": "16"
+        },
+        {
+          "value": "24",
+          "label": "24"
+        },
+        {
+          "value": "30",
+          "label": "30"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured Collection",
+      "category": "Collection",
+      "settings": 
+      {
+        "title": "Featured collection",
+        "featured_collection": "frontpage"
+      }
+    }
+  ]
+}
+{% endschema %}

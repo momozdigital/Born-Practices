@@ -1,0 +1,88 @@
+{% assign index = section.blocks.size %}
+
+{% case index %}
+  {% when 1 %}
+    {% assign featured_image_width = 'one-whole' %}
+  {% when 2 %}
+    {% assign featured_image_width = 'one-half' %}
+  {% when 3 %}
+    {% assign featured_image_width = 'small--one-whole one-third' %}
+  {% when 4 %}
+    {% assign featured_image_width = 'small--one-half medium--one-half one-quarter' %}
+  {% when 5 %}
+    {% assign featured_image_width = 'small--one-whole one-third' %}
+  {% when 6 %}
+    {% assign featured_image_width = 'small--one-whole one-third' %}
+  {% when 7 %}
+    {% assign featured_image_width = 'small--one-whole one-third' %}
+  {% when 8 %}
+    {% assign featured_image_width = 'small--one-whole medium--one-half one-quarter' %}
+  {% when 9 %}
+    {% assign featured_image_width = 'small--one-whole one-third' %}
+{% endcase %}
+
+{% if section.blocks.size > 0 %}
+<div class="gallery gallery-{{ section.id }}">
+  <div class="clear">
+    <ul>
+
+      {% for block in section.blocks %}
+          <li class="item {{ featured_image_width }}">
+            <a href="{{ block.settings.link }}">
+              {{ block.settings.image | img_url: 'master' | img_tag: block.settings.image.alt }}
+             {% if block.settings.title != blank %} <h3>{{ block.settings.title }}</h3>{% endif %}
+            </a>
+          </li>
+      {% endfor %}
+
+    </ul>
+  </div>
+</div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Gallery",
+  "class": "index-section",
+  "max_blocks": 24,
+  "blocks": [
+    {
+      "type": "image",
+      "name": "Slide",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link URL"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Text",
+          "default": "Title Block"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Gallery",
+      "category": "Image",
+
+      "blocks": [
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,73 @@
+<div class="two">
+  <div class="clear">
+    
+    <div class="left">
+      <a href="{{ section.settings.link }}">
+        {{ section.settings.image | img_url: 'master' | img_tag: section.settings.image.alt }}
+      </a>
+    </div>
+    
+    <div class="right">
+      <div class="content">
+        <h2 class="home-title">{{ section.settings.title }}</h2>
+        {{ section.settings.bajada }}
+        <form action="{{ section.settings.mailchimp }}" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+          <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="Ingresa tu email" required>
+          <input type="submit" value="Enviar" name="subscribe" id="mc-embedded-subscribe" class="button">
+        </form>
+      </div>
+    </div>
+    
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Image + Newsletter",
+  "class": "index-section",
+  "settings": [
+	{
+      "type": "header",
+      "content": "Left"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "Link URL"
+    },
+	{
+      "type": "header",
+      "content": "Right"
+    },
+	{
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Titulo"
+    },
+	{
+      "type": "richtext",
+      "id": "bajada",
+      "label": "Text",
+	  "default": "<p>Lorem ipsum adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna  erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci</p>"
+    },
+    {
+      "type": "text",
+      "id": "mailchimp",
+      "label": "Mailchimp Form Action Value",
+      "default": "#"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Image + Newsletter",
+      "category": "Image"
+    }
+  ]
+}
+{% endschema %}

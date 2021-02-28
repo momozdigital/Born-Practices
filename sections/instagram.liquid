@@ -1,0 +1,133 @@
+<div class="suscri grid">
+  {{ 'jquery.instagramFeed.min.js'  | asset_url | script_tag }}
+  
+  
+  <div class="newsletter-ins">
+    <div class="newsletter-instagram">
+      
+      <div id="w-node-34b3f9d59fab-f9d59fa9" class="div-block-186">
+          <h1 class="titulo-news">{{ section.settings.title1 }}</h1>
+          <div class="div-block-188">
+              <div class="formulario-newsletter">
+                <form action="{{ section.settings.mailchimp }}" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+                    <div class="div-block-187">
+                      <!--<p class="paragraph-19">Nombre</p>-->
+                      <input type="text" value="" name="FNAME" class="" id="mce-FNAME" placeholder="Nombre">
+                    </div>
+                    <div class="div-block-187 _2">
+                        <!--<p class="paragraph-19">Correo</p>
+                        <p class="paragraph-18">Enviar</p>-->
+                        <input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL" placeholder="Correo">
+                        <input type="submit" value="Enviar" name="subscribe" id="mc-embedded-subscribe" class="boton2 paragraph-18">
+                    </div>
+                  </form>
+              </div>
+          </div>
+      </div>
+      
+      <div id="w-node-34b3f9d59fb8-f9d59fa9" class="div-block-191">
+        
+          <div class="item-child2" id="instafeed">
+    		</div>
+        
+          <div class="div-block-190">
+              <h1 class="siguenos">¡Síguenos!</h1>
+              <div class="div-block-192">
+                <a href={{ section.settings.falink }}>
+                  <img src="https://cdn.shopify.com/s/files/1/0262/7046/6134/t/5/assets/facebook.png?v=1602807982" loading="lazy" height="20" alt="" class="image-102" />
+                </a>
+                <a href={{ section.settings.inlink }}>
+                  <img src="https://cdn.shopify.com/s/files/1/0262/7046/6134/t/5/assets/instagram.png?v=1602808004" loading="lazy" height="20" alt="" class="image-101" />
+                </a>  
+              </div>
+          </div>
+        
+      </div>
+      
+    </div>
+  </div>   
+  
+
+  
+  
+</div>
+
+
+<script>
+    (function($){
+        $(window).on('load', function(){
+            $.instagramFeed({
+                'username': 'bornshop.cl',
+                'container': "#instafeed",
+                'display_profile': false,
+                'display_biography': false,
+                'display_gallery': true,
+                'callback': null,
+                'styling': true,
+                'items': 4,
+                'items_per_row': 4,
+                'margin': 1 
+            });
+        });
+    })(jQuery);
+  
+</script>
+
+{% schema %}
+{
+  "name": "Suscripción",
+  "class": "index-section",
+  "settings": [
+        {
+          "type": "header",
+          "content": "Newsletter"
+        },
+        {
+          "type": "text",
+          "id": "title1",
+          "label": "Instagram",
+          "default": "Instagram"
+        },
+        {
+          "type": "text",
+          "id": "mailchimp",
+          "label": "Mailchimp Action",
+          "default": "#"
+        },
+        {
+          "type": "header",
+          "content": "Instagram"
+        },
+        {
+          "type": "text",
+          "id": "title2",
+          "label": "Instagram",
+          "default": "Instagram"
+        },
+        {
+          "type": "text",
+          "id": "inlink",
+          "label": "Instagram URL",
+          "default": "https://www.instagram.com/depto51/"
+        },
+		{
+          "type": "text",
+          "id": "falink",
+          "label": "Facebook URL",
+          "default": "https://www.instagram.com/depto51/"
+        },
+        {
+          "type": "text",
+          "id": "inuser",
+          "label": "Instagram User",
+          "default": "@depto51 "
+        }
+  ],
+  "presets": [
+    {
+      "name": "Suscripción",
+      "category": "Image"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,77 @@
+{% section 'bannerShop' %}
+
+
+<div id="collOptions" class="coll-header grid">
+
+  <div id="tittleColl" class="item headerShop">
+    {% if collection.image %}
+    	<h2 class="h1">Shop</h2>
+    {% else %}
+    	<h2 class="h1">{{ collection.title }}</h2>
+    {% endif %}
+    <div class="bajada">
+    </div>
+  </div>
+  
+  <div id="divSelectPag" style="">
+	
+    <div id="selectOrderBy" style="display: flex;padding: 3px 20px 0px 0px;">
+      <p style="font-family: 'Gilroy'; font-weight: 600;
+                font-size: 12px;padding: 6px 20px 0px;">
+        Ordenar por:
+      </p>  
+      <select id="orderBySelect"
+      onchange="window.location=this.options[this.selectedIndex].value" >
+        
+          <option value="/collections/all">
+            Seleccione
+          </option>
+          <option value="/collections/all?sort_by=price-ascending">PRECIO MENOR A MAYOR</option>
+          <option value="/collections/all?sort_by=price-descending">PRECIO MAYOR A MENOR</option>
+          <option value="/collections/all?sort_by=created-descending">MÁS NUEVOS</option>
+        
+      </select>
+    </div>
+    
+    <div class="pagColl pagCollTop">
+      {% paginate collection.products by 24 %}
+          {% if paginate.pages > 1 %}
+              {% include 'pagination' %}
+          {% endif %}
+      {% endpaginate %}
+    </div>  
+  </div>
+  
+  
+</div>
+
+<div id="collOptionsMobile">
+  <div class="optionsMobile">Filtrar</div>
+  <div class="optionsMobile">Ordenar por</div>
+</div>
+
+<script>
+  
+  var actualURL = window.location.href;
+  if(actualURL.includes("sort_by=price-ascending")){
+	document.getElementById("orderBySelect").value = "/collections/all?sort_by=price-ascending";
+  }
+  else if(actualURL.includes("sort_by=price-descending")){
+  	document.getElementById("orderBySelect").value = "/collections/all?sort_by=price-descending";		
+  }
+  else if(actualURL.includes("sort_by=created-descending")){
+  	document.getElementById("orderBySelect").value = "/collections/all?sort_by=created-descending";
+  }
+  else{
+  	document.getElementById("orderBySelect").value = "/collections/all";	
+  }
+  
+  
+  
+</script>
+{% section 'collection-template' %}
+
+<div style="display: none;">
+  <!-- Powered by DataCue [https://www.datacue.co/] -->
+  <div data-dc-products></div>
+</div>

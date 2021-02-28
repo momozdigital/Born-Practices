@@ -1,0 +1,759 @@
+{% assign add_to_cart = 'Agregar al carro' %}
+{% assign unavailable = 'No disponible' %}
+
+{% assign on_sale = false %}
+{% if product.compare_at_price > product.price %}
+  {% assign on_sale = true %}
+{% endif %}
+
+{% assign sold_out = true %}
+{% assign sold_out_text = 'products.product.sold_out' | t %}
+{% if product.available %}
+  {% assign sold_out = false %}
+{% endif %}
+
+{% assign product_vendor_handle = product.vendor | handle %}
+{% comment %}
+Do we have a collection that has the same name as our product vendor name?
+If we do, let's have the vendor link point to it.
+If not, we will point to the automatic vendor collection.
+{% endcomment %}
+{% if collections[product_vendor_handle].handle == product_vendor_handle %}
+{% assign vendor_url = collections[product_vendor_handle].url %}
+{% else %}
+{% assign vendor_url = product.vendor | url_for_vendor %}
+{% endif %}
+
+{% assign isPre = false  %}
+{% for collection in product.collections %}              
+  {% if collection.title == "Preventa Ezpz" %}
+  	{% assign isPre = true  %}
+  {% endif %}
+{% endfor %}
+
+  
+                  
+                    
+                  
+
+<div itemscope itemtype="http://schema.org/Product" class="product clear{% if sold_out %} sold-out{% endif %}">
+  
+  <meta itemprop="url" content="{{ shop.url }}{{ product.url }}" />
+  <meta itemprop="image" content="{{ product | img_url: 'grande' }}" />
+    
+    {% include 'breadcrumb' %}
+  
+  
+  <div class="container-popup" id="modalPreventa">
+    <div class="popup">
+      <div>
+        <p>Recuerda que este producto estará disponible para despacho a partir del <br> 21 de Enero de 2021</p>
+        <a id="confirmarAgregar" href="#">OK</a>
+      </div>
+    </div>
+  </div> 
+  
+  
+  <div class="pro-sec pro-sec1 grid">
+    
+    <div class="left">
+          
+      <div id="main-photo">
+        
+        <div class="boost-pfs-filter-product-item-label"> 
+          
+            {% if on_sale %}
+              	<!--<span class="sale boost-pfs-filter-label"> Oferta </span> -->
+          	          
+          		{% assign precioOrig = product.compare_at_price  | divided_by: 100.0 %}
+          		{% assign precioOfer = product.price | divided_by: 100.0  %}
+          		{% assign calc = precioOrig | minus: precioOfer %}
+          		{% assign calc2 = calc | divided_by: precioOrig %}
+          		{% assign porc = calc2 | times: 100 %}         		
+          		<span class="sale boost-pfs-filter-label"> {{porc | round }}% OFF</span>
+          
+            {% endif %}
+          
+            {% unless product.available %}
+              	<span class="soldout boost-pfs-filter-label"> Agotado </span>
+            {% endunless %}	
+          
+          
+    	</div>
+        
+        <ul>
+          {% for image in product.images %}
+            <li>
+              <a data-fancybox="gallery" href="{{ image | img_url: '1800x' }}">
+                <img src="{{ image | img_url: '1024x1024' }}" alt="{{ image.alt | escape }}" />
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+      
+      <div id="mini-photos">
+        
+        <ul>
+          {% assign minicount = 0 %}
+          {% for image in product.images %}
+            <li>
+              <a data-img="{{ image | img_url: '1024x1024' }}">
+                {% assign minicount = minicount | plus: 1 %}
+                {{ minicount }}
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+        
+      </div>
+      
+    </div>
+    
+    <div class="right">
+      
+      <h1 class="h1">{{ product.title }}</h1>
+      
+      <h2 itemprop="brand">{{ product.vendor | link_to: vendor_url }}</h2>
+      
+      <form action="/cart/add" method="post" enctype="multipart/form-data">
+      
+      	<div class="price" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+        
+          <meta itemprop="priceCurrency" content="{{ shop.currency }}" />
+          {% if product.available %}
+              <link itemprop="availability" href="http://schema.org/InStock" />
+          {% else %}
+              <link itemprop="availability" href="http://schema.org/OutOfStock" />
+          {% endif %}
+
+          {% assign variant = product.selected_or_first_available_variant %}
+			
+          
+          {% if product.variants.size > 1 %}
+    	      <!-- p class="desde">Desde</p -->
+          {% else %}
+	          
+          {% endif %}
+          <p class="{% if on_sale %}sale{% endif %} pnormal">{{ variant.price | money }}</p>
+          {% if on_sale %}<p class="old">{{ variant.compare_at_price | money }}</p>{% endif %}
+        
+        </div>
+        
+        {% if product.variants.first.inventory_policy == "continue" %}
+        
+        {% else %}
+          {% if product.variants.first.inventory_management == "shopify" and product.variants.first.inventory_quantity > 5 %}
+            <div class="remain">
+              <p class="texto">
+
+              </p>
+            </div>
+          {% elsif product.variants.first.inventory_management == "shopify" and product.variants.first.inventory_quantity == 1 %}
+              <div class="remain">
+                <p class="texto">
+                  Queda sólo 1 unidad
+                </p>
+              </div>
+          {% else %}
+              <div class="remain">
+                <p class="texto">
+                  Quedan sólo {{ product.variants.first.inventory_quantity }} unidades
+                </p>
+              </div>
+          {% endif %}
+        {% endif %}
+        
+        
+        <div class="vars {% if product.variants.size == 1 %}no-options{% endif %}">
+          <div class="options grid">
+          <p class="provp {% if product.variants.size == 1 %}default-title{% endif %}">
+            <select id="pro-variants">
+            {% if product.variants.size > 1 %}
+            <option value="" selected="selected">Selecciona una opción</option>
+            {% endif %}
+
+            {% if product.variants.size == 1 %}
+            {% for variant in product.variants %}
+               <option value="{{ variant.id }}" data-name="{{ variant.title | handleize }}">{{ variant.title }}</option>
+            {% endfor %}
+            {% else %}
+
+            {% for variant in product.variants %}
+	            <option value="{{ variant.id }}" data-stock="{{ variant.inventory_quantity }}" data-price="{{ variant.price | money_without_trailing_zeros  }}" data-compare="{{ variant.compare_at_price  | money_without_trailing_zeros  }}" data-name="{{ variant.title }}" data-image="{{ variant | img_url: '1024x1024' }}">{{ variant.title }}</option>
+            {% endfor %}
+
+            {% endif %}
+            </select>
+          </p>
+          {% if product.options.size == 1 %}
+          <p>                
+              <select class="cantidad-select">
+                <option value="" selected="selected">Cantidad</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+              </select>
+            </p>
+          {% endif %}
+          </div>
+
+          {% if product.options.size > 1 %}
+          <style>.provp{display:none !important;}</style>
+          <div class="options grid">
+            {% for option in product.options_with_values %}
+            <p>
+                              
+              <select class="option_se option-{{ option.position }}">
+                <option value="" selected="selected">Selecciona {{ option.name }}</option>
+                {% for value in option.values %}
+                <option value="{{ value }}">{{ value }}</option>
+                {% endfor %}
+              </select>
+            </p>
+            {% endfor %}
+            <p>                
+              <select class="cantidad-select">
+                <option value="" selected="selected">Cantidad</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+              </select>
+            </p>
+          </div>
+          {% endif %}
+          <div class="options grid">
+          
+        </div>
+        </div>
+        
+        
+       {% if product.vendor == "Bibs" %}
+        	{% if product.title contains "Supreme" %}
+        	{% else %}
+              <br>
+              <div class="msgDeliveryDate">
+                SOLO DISPONIBLE PARA DESPACHO A PARTIR DEL 15/03/2021
+              </div>
+        	{% endif %}
+        {% endif %}
+        {%- comment -%}
+        
+        {% for collection in product.collections %}
+              
+          {% if collection.title == "Preventa Ezpz" %}
+      		<br>
+            <div class="msgDeliveryDate">
+              SOLO DISPONIBLE PARA DESPACHO A PARTIR DEL 21/01/2021
+            </div>
+          {% endif %}
+        {% endfor %}
+        {%- endcomment -%}
+        
+        
+        <div id="product-add" class="botones grid">     
+          
+          <div class="boton-carro">
+            {% if sold_out %}
+			  {% if product.variants.first.inventory_policy == "continue" %}
+            	<a href="" class="add-to-cart boton" id="add-to-cart">
+                  Agregar al carro
+                </a>
+              {% else %}
+                <a class="add-to-agotado boton">
+                  A G O T A D O
+                </a>
+              {% endif %}
+            {% else %}
+              <a href="" class="add-to-cart boton" id="add-to-cart">
+                Agregar al carro
+              </a>
+            {% endif %}
+
+            {% if product.variants.size > 1 %}
+              {% if product.variants.first.inventory_policy == "continue" %}
+              {% else %}
+                <span class="disable" id="sobre-agregar"><div class="pop-disable">
+                  <p>Selecciona una opción para poder comprar</p>
+                </div></span>
+              {% endif %}
+            {% endif %}
+          </div>
+          
+          <div class="icons">
+            <i class="despacho"></i>
+            <div class="text">
+              <p>
+                - Región Metropolitana: 3 a 5 días hábiles <br>
+            	- Otras Regiones: 4 a 8 días hábiles  <br>
+            	- Regiones extremas: Hasta 15 días hábiles <br>
+              </p>              
+              <!--<a href="#">Ver listado de regiones</a>-->
+            </div>
+          </div>
+          
+          
+          
+          
+          {% if product.options.size > 1 %}
+          <!-- Para más de 2 o más variantes -->
+          
+            <script type="text/javascript">
+              $(document).ready(function(){
+
+                $('.option_se').change(function() {
+                  var option1 = $('.option-1').val();
+                  var option2 = $('.option-2').val();
+                  var option3 = $('.option-3').val();
+                  
+                  if ( option3 == undefined ) {
+                  	var opop = option1 + ' / ' + option2;
+                  } else {
+	                var opop = option1 + ' / ' + option2 + ' / ' + option3;
+                  }
+
+                  console.log(opop);
+
+                  var selected = $('#pro-variants').find('option').filter( '[data-name="' + opop + '"]' );
+                  
+                  var preID = $(selected).val();
+                  var proID = parseInt(preID);
+                  var stock = $(selected).data('stock');
+                  var precio = $(selected).data('price');
+                  var varimg = $(selected).data('image');
+                  var old = $(selected).data('compare');
+                  console.log(selected, preID, proID, stock, precio, old);
+
+                  if (stock < 1) {
+                    $('.disable').show();
+                    $('.pop-disable').html('<p>Producto sin stock, selecciona otra opción para poder comprar</p>');
+                  }
+                  
+                  $('.product .right .price p.pnormal').html(precio);
+                  $('.product .right .price p.desde').html(old).addClass('old');
+                  
+                  if (stock == 0) {
+                    $('.remain p').html('Producto agotado');
+                    $('#sobre-agregar').fadeIn(100);
+                  } else if (stock == undefined ) {          
+                    $('#sobre-agregar').fadeIn(100);
+                  } else if (stock == 1) {
+                    $('.remain p').html('Queda sólo ' + stock + ' unidad');
+                    $('#sobre-agregar').fadeOut(100);
+                  } else if (stock > 1 && stock < 6) {
+                    $('.remain p').html('Quedan sólo ' + stock + ' unidades');
+                    $('#sobre-agregar').fadeOut(100);
+                  } else {
+                    $('.remain p').html('');
+                    $('#sobre-agregar').fadeOut(100);
+                  }
+                  
+                  $('#mini-photos ul li a[data-img="' + varimg + '"]').click();
+
+				  
+                  $('#confirmarAgregar').click(function(){    
+                      $('#minicart').addClass('show');    
+                      $('.container-popup').hide();	
+                  });
+                  
+                  $('#add-to-cart').on('click', function(e) {
+                    
+                    console.log("Click");
+                    
+                  	{% for collection in product.collections %}              
+                      {% if collection.title == "Preventa Ezpz" %}
+                    	console.log("MOSTRAR MODAL");
+                    	$('#modalPreventa').show();	
+                      {% else %}  
+                    	console.log("AÑADIR");
+                    	add();
+                      {% endif %}
+                    {% endfor %}
+                    
+                  
+                  });
+                  
+                  
+                  function add(){
+                    
+                     console.log("pasa a add()");
+                  	
+                      e.preventDefault();
+
+                      window.alert = function() {};
+
+                      var precantidad = $('.cantidad-select').val();
+                      var cantidad = parseInt(precantidad);
+
+                      Shopify.addItem(proID, cantidad, function(){
+
+                        console.log('this: ' + this.id);
+
+                        $('#minicart .middle ul').empty();
+                        $("#minicart .cifra").empty();
+
+                        jQuery.get("/cart.js", function(data){ 
+                          console.log(data.items);
+                          var obj = data.items;
+                          for(var i=0;i<obj.length;i++)
+                          {
+
+                            var titulo = obj[i]["product_title"];
+                            var varianteID = obj[i]["variant_id"];
+                            var variante1 = obj[i]["variant_title"];
+                            if (variante1 == null) {
+                              var variante = "";
+                            } else {
+                              var variante = variante1;
+                            }
+
+                            var precio1 = parseFloat(obj[i]["price"]);
+                            var precio2 = precio1.toString();
+                            var precio3 = precio2.substring(0, precio2.length - 2);
+                            var precio = precio3.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.");
+                            console.log(precio);
+
+                            var cantidad = obj[i]["quantity"];
+                            var imagen = obj[i]["image"];
+
+                            var proMini = "<li><div class='left'><h4>"+titulo+"</h4><h6>Cantidad: <span>"+cantidad+"</span></h6><h5>$"+precio+"</h5><i data-id='" + varianteID + "' class='quitar'></i></div><div class='right'><img src='"+imagen+"' alt='' /></div></li>";
+
+                            $("#minicart .middle ul").append(proMini);
+
+                            $('#minicart .middle .left i.quitar').click(function(){
+                              console.log('varianteID: ' + varianteID);
+                              var borrarID = $(this).data('id');
+                              Shopify.removeItem(borrarID, function(){
+                                console.log('borrado!');
+                              });
+                              $(this).parent().parent().fadeOut(200);
+                            });
+
+                          }
+                        }, 'json');
+
+                        jQuery.get("/cart.js", function(data){ 
+                          console.log(data);
+                          var total1 = data.total_price;
+                          var total2 = total1.toString();
+                          var total3 = total2.substring(0, total2.length - 2);
+                          var total = total3.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.");
+
+                          var itemcount = data.item_count;
+
+                          console.log(total);
+                          $("#minicart .cifra").append('$'+total);
+                          $("header .icons li a.cart .count").html(itemcount);
+                        }, 'json');
+
+                        $('#minicart').addClass('show');
+
+                      });
+
+                  }
+                  
+                  
+
+              });
+              
+              window.alert = function() {};
+            </script>
+          
+          {% else %}
+          <!-- Para 1 variante o nada -->
+          
+            <script type="text/javascript">
+              $(document).ready(function(){
+                $('#pro-variants').change(function() {
+                  $('.disable').hide();
+				  
+                  var stock = $(this).find(':selected').data('stock');
+                  var precio = $(this).find(':selected').data('price');
+                  var compare = $(this).find(':selected').data('compare');
+                  var varimg = $(this).find(':selected').data('image');
+                  var cantInput = $('.cantidad-select').val();
+
+                  console.log(stock, precio, compare, cantInput);
+
+                  if (stock < 1) {
+                    $('.disable').show();
+                    $('.pop-disable').html('<p>Producto sin stock, selecciona otra opción para poder comprar</p>');
+                  }
+
+                  $('.product .right .price p.pnormal').html(precio);
+                  $('.product .right .price p.desde').html(compare).addClass('old');
+                  
+                  if (stock == 0) {
+                    $('.remain p').html('Producto agotado');
+                    $('#sobre-agregar').fadeIn(100);
+                  } else if (stock == undefined ) {
+                    $('.remain p').html('');          
+                    $('#sobre-agregar').fadeIn(100);
+                  } else if (stock == 1) {
+                    $('.remain p').html('Queda sólo ' + stock + ' unidad');
+                    $('#sobre-agregar').fadeOut(100);
+                  } else if (stock > 1 && stock < 6) {
+                    $('.remain p').html('Quedan sólo ' + stock + ' unidades');
+                    $('#sobre-agregar').fadeOut(100);
+                  } else {
+                    $('.remain p').html('Quedan sólo ' + stock + ' unidades');
+                    $('#sobre-agregar').fadeOut(100);
+                  }
+                  
+                  if (cantInput > stock) {
+                    console.log('bleh');
+                    $('.disable').show();
+                    $('.pop-disable').html('<p>Estás tratando de comprar más que el stock disponible</p>');
+                  }
+                  
+                  $('#mini-photos ul li a[data-img="' + varimg + '"]').click();
+
+                });
+                
+                $('.cantidad-select').change(function() {
+                  var cant = $(this).val();
+                  var proStock = $('#pro-variants').find(':selected').data('stock');
+                  console.log('cant: ' + cant);
+                  console.log('proStock: ' + proStock);
+                  
+                  if (cant > proStock) {
+                    $('.disable').show();
+                    $('.pop-disable').html('<p>Estás tratando de comprar más que el stock disponible</p>');
+                  }
+                  
+                });
+                
+                $('#confirmarAgregar').click(function(){    
+                      $('#minicart').addClass('show');    
+                      $('.container-popup').hide();	
+                  });
+                
+                              
+                $('#add-to-cart').click(function(e) {
+                    
+                  	{% if isPre == true %}
+						$('#modalPreventa').show();	
+                    {% endif %}
+                  
+                  	console.log('click en segundo add ');
+                  
+                          e.preventDefault();
+
+                          window.alert = function() {};
+
+                          {% if product.variants.size > 1 %}
+
+                             var proID = $('#pro-variants').val();
+                             var proIDstock = $('#pro-variants').find(':selected').data('stock');
+                             var comPro =  parseInt(proID, 10) + parseInt(proIDstock, 10);
+
+                          {% else %}
+
+                              var proID = {{ variant.id }};
+
+                          {% endif %}
+
+
+                         var cantidad = $('.cantidad-select').val();
+
+                          jQuery.get("/cart.js", function(data){ 
+                              console.log(data.items);
+                              var obj = data.items;
+                              for(var i=0;i<obj.length;i++)
+                              {
+
+                                var varianteID = obj[i]["variant_id"];
+                                var varianteStock = obj[i]["quantity"];
+                                var comCart = varianteID + varianteStock;
+
+                                /* if (varianteID == proID) {
+                                  console.log('match');
+                                  if (comPro >= comCart) {
+                                    $('.disable').show();
+                                    $('.pop-disable').html('<p>Estás tratando de comprar más que el stock disponible</p>');
+                                  }
+                                } */
+
+                              }
+
+                            }, 'json');
+
+                          Shopify.addItem(proID, cantidad, function(){
+
+                            $('#minicart .middle ul').empty();
+                            $("#minicart .cifra").empty();
+
+                            jQuery.get("/cart.js", function(data){ 
+                              console.log(data.items);
+                              var obj = data.items;
+                              for(var i=0;i<obj.length;i++)
+                              {
+
+                                var titulo = obj[i]["product_title"];
+                                var varianteID = obj[i]["variant_id"];
+                                var variante1 = obj[i]["variant_title"];
+                                if (variante1 == null) {
+                                  var variante = "";
+                                } else {
+                                  var variante = variante1;
+                                }
+
+                                var precio1 = parseFloat(obj[i]["price"]);
+                                var precio2 = precio1.toString();
+                                var precio3 = precio2.substring(0, precio2.length - 2);
+                                var precio = precio3.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.");
+                                console.log(precio);
+
+                                var cantidad = obj[i]["quantity"];
+                                var imagen = obj[i]["image"];
+
+                                var proMini = "<li><div class='left'><h4>"+titulo+"</h4><h6>Cantidad: <span>"+cantidad+"</span></h6><h5>$"+precio+"</h5><i data-id='" + varianteID + "' class='quitar'></i></div><div class='right'><img src='"+imagen+"' alt='' /></div></li>";
+
+                                $("#minicart .middle ul").append(proMini);
+
+                                $('#minicart .middle .left i.quitar').click(function(){
+                                  console.log('varianteID: ' + varianteID);
+                                  var borrarID = $(this).data('id');
+                                  Shopify.removeItem(borrarID, function(){
+                                    console.log('borrado!');
+                                  });
+                                  $(this).parent().parent().fadeOut(200);
+                                });
+
+                              }
+                            }, 'json');
+
+                            jQuery.get("/cart.js", function(data){ 
+                              console.log(data);
+                              var total1 = data.total_price;
+                              var total2 = total1.toString();
+                              var total3 = total2.substring(0, total2.length - 2);
+                              var total = total3.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.");
+
+                              var itemcount = data.item_count;
+
+                              console.log(total);
+                              $("#minicart .cifra").append('$'+total);
+                              $("header .icons li a.cart .count").html(itemcount);
+                            }, 'json');
+
+                            $('#minicart').addClass('show');
+
+                          });
+                  
+                  
+                 });
+                
+           });
+              	
+              
+              
+            </script>
+          
+          
+          {% endif %}
+          
+        </div>
+        
+        </form>
+      
+      	
+      	
+    </div>
+    
+  </div>
+  
+  <div class="pro-sec pro-sec2 grid">
+    <div class="marca">
+      <h2 class="h3">{{ product.vendor }}</h2>
+      {% assign colldes = product.vendor | handleize %}
+      <div class="img" style="background-image: url({{ collections[colldes].image | img_url: '400x' }});"></div>
+      <div class="bajada">
+		  {{ collections[colldes].description }}
+      </div>
+      <a class="more boton2" href="/collections/{{ product.vendor | handleize }}">Conoce más de esta marca</a>
+    </div>
+    <div itemprop="description" class="description">
+      <h2 class="h3">Descripción del producto</h2>
+      {{ product.description }}
+    </div>
+  </div>
+  
+  <div class="pro-sec pro-sec3 grid">
+    
+    <div class="reviews">
+      <div id="shopify-product-reviews" data-id="{{product.id}}">{{ product.metafields.spr.reviews }}</div>
+    </div>
+    
+    <div class="faq">
+      <h2 class="h3">Preguntas Frecuentes</h2>
+      <div class="deon">
+        <h3>¿Cuánto tiempo se demora mi despacho o entrega?</h3>
+        {{ section.settings.tiempo }}
+        <h3>¿Tiene algún costo mi envío?</h3>
+        {{ section.settings.costo }}
+        <h3>Si compro por internet, ¿puedo retirar en la tienda de Parque Arauco?</h3>
+        {{ section.settings.retiro }}
+        <h3>¿Puedo cambiar un producto?</h3>
+        {{ section.settings.cambio }}
+      </div>
+    </div>
+    
+  </div>
+  
+</div>
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.6/dist/jquery.fancybox.min.css" />
+	<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.6/dist/jquery.fancybox.min.js"></script>
+
+{% comment %}
+  Adding support for product options. See here for details:  
+  http://docs.shopify.com/support/your-website/themes/can-i-make-my-theme-use-products-with-multiple-options
+{% endcomment %}
+
+{% schema %}
+{
+  "name": "Product",
+  "class": "index-section",
+  "settings": [
+	{
+      "type": "richtext",
+      "id": "tiempo",
+      "label": "Tiempo de entrega",
+ 	  "default": "<p>Curabitur nec diam tincidunt, pellentesque enim eu, gravida dui. Fusce ut malesuada ex. Cras at sem ut justo tristique efficitur eu ut ante.</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "costo",
+      "label": "Costo de envío",
+      "default": "<p>Praesent sed auctor odio. Nunc in ligula at neque tristique rutrum. Sed sed metus ac arcu blandit elementum </p>"
+    },
+	{
+      "type": "richtext",
+      "id": "retiro",
+      "label": "Puedo retirar",
+ 	  "default": "<p>Curabitur nec diam tincidunt, pellentesque enim eu, gravida dui. Fusce ut malesuada ex. Cras at sem ut justo tristique efficitur eu ut ante.</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "cambio",
+      "label": "Cambio de producto",
+      "default": "<p>Praesent sed auctor odio. Nunc in ligula at neque tristique rutrum. Sed sed metus ac arcu blandit elementum </p>"
+    }
+  ]
+}
+{% endschema %}

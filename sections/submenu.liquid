@@ -1,0 +1,19 @@
+<div id="submenu" class="">
+  <div></div>
+  <div></div>
+  <div class="place grid">
+
+  </div>
+</div>
+
+<script>
+
+  $(document).ready(function(){
+    var winW = $(window).width();
+    
+    if ( winW > 830 ) {
+  	  $('nav .sub-menu').appendTo('#submenu .place');
+    }
+  });
+  
+</script>

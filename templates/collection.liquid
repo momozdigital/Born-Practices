@@ -1,0 +1,88 @@
+
+<div id="dataAllProducts">
+  
+  {% comment %}
+    {{ collection.url }}<br>
+    {{ request.host }}<br>
+    {{ collection }}  <br>    
+    {{ collection.title }}<br>
+    {{ collection.all_products_count }} <br>
+  	{{ collection.products }}<br>
+  {% endcomment %}
+  
+  {% assign count = 0 %}
+  {% assign isPre = false  %}
+  
+  {% if collection.all_products_count > 50 %}
+  <script>console.log('Wilmer dice que me deberia ejecutar desde el if')</script>
+    {%- paginate collection.products by collection.all_products_count -%}
+
+      {% for product in collection.products %}    
+		
+  		{% for collection_aux in product.collections %} 
+          {% if collection_aux.title == "Preventa Ezpz" %}
+  			{% assign isPre = true  %}
+          {% endif %}
+        {% endfor %} 
+  
+  		{% if isPre == true %}
+  		
+  			<div class="container-popup" id="modalPreventa-{{ product.id }}">
+              <div class="popup">
+                <div>
+                  <p>Este producto estará disponible para despacho a partir del <br> 21 de Enero de 2021</p>
+                  <span id="confirmarAgregar-{{ product.id }}" >OK</span>
+                </div>
+              </div>
+          	</div> 
+  			<input id="isPre-{{ product.id }}" type="text" style="display:none" value='YesPrev'/>
+  		{% else %}
+  			<input id="isPre-{{ product.id }}" type="text" style="display:none" value='NoPrev'/>
+        {% endif %}  		
+  
+        <input id="cant-{{ product.id }}" type="text" style="display:none" value="{{ product.variants.first.inventory_quantity }}"/>     	
+        <input id="dataProduct-{{ product.id }}" type="text" style="display:none" value='{{ product | json | escape }}'/>
+        {% assign count = count | plus: 1 %}
+        
+
+      {% endfor %}
+
+    {%- endpaginate -%}
+  
+  {% else %}
+ 
+  
+  	{% for product in collection.products %} 
+  	
+  	 {% if product.vendor == 'Bibs'%}
+  
+  		{% if product.title contains "Supreme" %}
+       	{% else %}
+  		<div class="container-popup" id="modalPreventa-{{ product.id }}">
+              <div class="popup">
+                <div>
+                  <p>Este producto estará disponible para despacho a partir del <br> 15 de Marzo de 2021</p>
+                  <span id="confirmarAgregar-{{ product.id }}" >OK</span>
+                </div>
+              </div>
+        </div> 
+  		<input id="isPre-{{ product.id }}" type="text" style="display:none" value='YesPrev'/>
+  		{% endif %}   		
+  	 {% else %}
+  		<input id="isPre-{{ product.id }}" type="text" style="display:none" value='NoPrev'/>
+  	 {% endif %}  	    
+  	  
+      <input id="cant-{{ product.id }}" type="text" style="display:none" value="{{ product.variants.first.inventory_quantity }}"/>     	
+      <input id="dataProduct-{{ product.id }}" type="text" style="display:none" value='{{ product | json | escape }}'/>
+      {% assign count = count | plus: 1 %}
+      
+  	{% endfor %}
+  
+  {% endif %}
+
+</div>
+
+
+
+
+{% section 'collection-template-boost-pfs-filter' %}

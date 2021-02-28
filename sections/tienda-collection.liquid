@@ -1,0 +1,50 @@
+{{ 'ajaxinate.min.js' | asset_url | script_tag }}
+
+<div class="featured-collection grid">
+
+  <aside>
+    <ul>
+    {% for link in linklists.menu-collection.links %}
+      <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+    {% endfor %}
+    </ul>
+  </aside>
+  
+  <div class="all-coll">
+
+  {% paginate collection.products by 24 %}
+
+    <ul class="grid" id="AjaxinateLoop">
+    {% for product in collection.products %}
+    
+        {% include 'product-item' %}
+    
+    {% endfor %}
+    </ul>
+    
+    <div id="AjaxinatePagination">
+      {% if paginate.next %}
+        <a class="boton boton-ajax" href="{{ paginate.next.url }}">Cargar más productos</a>
+      {% endif %}
+    </div>
+    
+    <!-- % if paginate.pages > 1 % -->
+      <!-- % include 'pagination' % -->
+    <!-- % endif % -->
+
+  {% endpaginate %}
+
+  </div>
+  
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  var endlessScroll = new Ajaxinate({
+    container: '#AjaxinateLoop',
+    pagination: '#AjaxinatePagination',
+    method: 'click',
+    loadingText: 'Cargando...'
+  });
+});  
+</script>

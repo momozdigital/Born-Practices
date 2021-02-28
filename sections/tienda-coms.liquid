@@ -1,0 +1,84 @@
+{% if section.blocks.size > 0 %}
+<div class="tiendacoms grid">
+
+  {% for block in section.blocks %}
+  <div class="item">
+    <div class="stars stars-{{ block.settings.stars }}">
+      <div class="back"></div>
+      <div class="ranking"></div>
+    </div>
+    <p class="title">{{ block.settings.title }}</p>
+    <div class="bajada">
+      {{ block.settings.com }}
+    </div>
+    <p class="nombre">— {{ block.settings.nombre }}</p>
+  </div>
+  {% endfor %}
+
+</div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Comentarios",
+  "max_blocks": 2,
+  "blocks": [
+    {
+      "type": "text",
+      "name": "Comentario",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Title Block"
+        },
+        {
+          "type": "richtext",
+          "id": "com",
+          "label": "Comentario",
+		  "default": "<p>Lorem ipsum dolor sit amet</p>"
+        },
+        {
+          "type": "text",
+          "id": "nombre",
+          "label": "nombre",
+          "default": "Rebeca Padrón"
+        },
+        {
+          "type": "select",
+          "id": "stars",
+          "label": "Ranking",
+          "default": "4",
+          "options": [
+            {
+              "value": "0",
+              "label": "0"
+            },
+            {
+              "value": "1",
+              "label": "1"
+            },
+            {
+              "value": "2",
+              "label": "2"
+            },
+            {
+              "value": "3",
+              "label": "3"
+            },
+            {
+              "value": "4",
+              "label": "4"
+            },
+            {
+              "value": "5",
+              "label": "5"
+            }
+		   ]
+		  }
+      ]
+    }
+  ]
+}
+{% endschema %}

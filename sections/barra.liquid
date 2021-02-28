@@ -1,0 +1,50 @@
+{% if section.settings.bajada != ''%}
+<div class="barra" style="background: {{ section.settings.color }}; color: {{ section.settings.color-text }};">
+	<div class="clear">
+      
+		{{ section.settings.bajada }}
+
+    </div>
+  <style>
+    .barra a {color: {{ section.settings.color-link }}};
+  </style>
+</div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Barra Superior",
+  "settings": [
+    {
+  	  "type": "textarea",
+  	  "id": "bajada",
+  	  "label": "Text",
+	  "default" : "<p>Fusce suscipit sapien dictum, varius ipsum eu, <a href='#'>elementum quam</a>.</p>"
+    },
+    {
+  	  "type": "text",
+  	  "id": "color",
+  	  "label": "Background Color",
+	  "default" : "#EAFED7"
+    },
+    {
+  	  "type": "text",
+  	  "id": "color-text",
+  	  "label": "Text Color",
+	  "default" : "#000000"
+    },
+    {
+  	  "type": "text",
+  	  "id": "color-link",
+  	  "label": "Link Color",
+	  "default" : "#000000"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Barra Superior",
+      "category": "Top"
+    }
+  ]
+}
+{% endschema %}

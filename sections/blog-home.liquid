@@ -1,0 +1,297 @@
+{% if section.blocks.size > 0 %}
+<div id="blog-home">
+
+  {% for block in section.blocks %}
+    {% if block.type == 'blog1' %}
+
+		<div class="textimage2 grid">
+          <div class="item">
+            <a href="{{ block.settings.link }}"><img src="{{ block.settings.image | img_url: "master" }}" /></a>
+          </div>
+          <div class="item">
+            <h6>{{ block.settings.epigrafe }}</h6>
+            <h3 class="h1">{{ block.settings.title }}</h3>
+            <div class="bajada">
+              {{ block.settings.bajada }}
+            </div>
+            <a href="{{ block.settings.link }}" class="more boton2">{{ block.settings.boton }}</a>
+          </div>
+          <div class="item"></div>
+        </div>
+
+    {% elsif block.type == 'blog2' %}
+
+		<div class="textimage1 blog-type grid">
+
+          <div class="item item-child">
+            <a href="{{ block.settings.link }}"><img src="{{ block.settings.image | img_url: "master" }}" /></a>
+          </div>
+          
+          <div class="item">
+            <h6>{{ block.settings.epigrafe }}</h6>
+            <h3 class="h1">{{ block.settings.title }}</h3>
+            <div class="bajada">
+              {{ block.settings.bajada }}
+            </div>
+            <a href="{{ block.settings.link }}" class="more boton2">{{ block.settings.boton }}</a>
+          </div>
+
+        </div>
+
+    {% elsif block.type == 'blog3' %}
+
+		<div class="textimage3 grid">
+          <div class="item"></div>
+          <div class="item">
+            <h6>{{ block.settings.epigrafe }}</h6>
+            <h3 class="h1">{{ block.settings.title }}</h3>
+            <div class="bajada">
+              {{ block.settings.bajada }}
+            </div>
+            <a href="{{ block.settings.link }}" class="more boton2">{{ block.settings.boton }}</a>
+          </div>
+          <div class="item">
+            <a href="{{ block.settings.link }}"><img src="{{ block.settings.image | img_url: "master" }}" /></a>
+          </div>
+        </div>
+
+    {% elsif block.type == 'blog4' %}
+
+		<div class="textimage1 textimage4 grid block-{{ block.id }}">
+          <div class="item">
+            <h6>{{ block.settings.epigrafe }}</h6>
+            <h3 class="h1">{{ block.settings.title }}</h3>
+            <div class="bajada">
+              {{ block.settings.bajada }}
+            </div>
+            <a href="{{ block.settings.link }}" class="more boton2">{{ block.settings.boton }}</a>
+          </div>
+
+          <div class="item item-child">
+            <a class="fade" href="{{ block.settings.link }}">
+              {% if block.settings.image1 != blank %}<img src="{{ block.settings.image1 | img_url: "master" }}" />{% endif %}
+              {% if block.settings.image2 != blank %}<img src="{{ block.settings.image2 | img_url: "master" }}" />{% endif %}
+              {% if block.settings.image3 != blank %}<img src="{{ block.settings.image3 | img_url: "master" }}" />{% endif %}
+            </a>
+            <ul class="numeric">
+              {% if block.settings.image1 != blank %}<li>1</li>{% endif %}
+              {% if block.settings.image2 != blank %}<li>2</li>{% endif %}
+              {% if block.settings.image3 != blank %}<li>3</li>{% endif %}
+            </ul>
+          </div>
+        </div>
+
+        <script>
+          $('.block-{{ block.id }} .fade').slick({
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            arrows: false,
+            fade: true,
+            asNavFor: '.block-{{ block.id }} .numeric'
+          });
+          $('.block-{{ block.id }} .numeric').slick({
+            slidesToShow: 3,
+            slidesToScroll: 1,
+            asNavFor: '.block-{{ block.id }} .fade',
+            dots: false,
+            arrows: false,
+            centerMode: false,
+            vertical: true,
+            focusOnSelect: true,
+	    	responsive: [
+		    	{
+			    	breakpoint: 830,
+			        settings: {
+			            vertical: false,
+             			slidesToShow: 10,
+			        }
+		        }
+	    	]
+          });  
+        </script>
+
+    {% endif %}
+  {% endfor %}
+</div>
+{% endif %}
+
+
+{% schema %}
+{
+  "name": "Blog Home",
+  "class": "index-section",
+  "max_blocks": 100,
+  "blocks": [
+      {
+        "type": "blog1",
+        "name": "Blog Type 1",
+		"settings": [
+			{
+              "type": "text",
+              "id": "epigrafe",
+              "label": "Epígrafe",
+              "default": "Epígrafe"
+            },
+            {
+              "type": "text",
+              "id": "title",
+              "label": "Title",
+              "default": "Title"
+            },
+            {
+              "type": "richtext",
+              "id": "bajada",
+              "label": "Text",
+              "default": "<p>Lorem ikpsum dolor sit</p>"
+            },
+            {
+              "type": "image_picker",
+              "id": "image",
+              "label": "Image"
+            },
+            {
+              "type": "url",
+              "id": "link",
+              "label": "Link URL"
+            },
+            {
+              "type": "text",
+              "id": "boton",
+              "label": "Button Text",
+              "default": "Ver más"
+            }
+		]
+     },
+     {
+        "type": "blog2",
+        "name": "Blog Type 2",
+		"settings": [
+			{
+              "type": "text",
+              "id": "epigrafe",
+              "label": "Epígrafe",
+              "default": "Epígrafe"
+            },
+            {
+              "type": "text",
+              "id": "title",
+              "label": "Title",
+              "default": "Title"
+            },
+            {
+              "type": "richtext",
+              "id": "bajada",
+              "label": "Text",
+              "default": "<p>Lorem ikpsum dolor sit</p>"
+            },
+            {
+              "type": "image_picker",
+              "id": "image",
+              "label": "Image"
+            },
+            {
+              "type": "url",
+              "id": "link",
+              "label": "Link URL"
+            },
+            {
+              "type": "text",
+              "id": "boton",
+              "label": "Button Text",
+              "default": "Ver más"
+            }
+		]
+     },
+      {
+        "type": "blog3",
+        "name": "Blog Type 3",
+		"settings": [
+			{
+              "type": "text",
+              "id": "epigrafe",
+              "label": "Epígrafe",
+              "default": "Epígrafe"
+            },
+            {
+              "type": "text",
+              "id": "title",
+              "label": "Title",
+              "default": "Title"
+            },
+            {
+              "type": "richtext",
+              "id": "bajada",
+              "label": "Text",
+              "default": "<p>Lorem ikpsum dolor sit</p>"
+            },
+            {
+              "type": "image_picker",
+              "id": "image",
+              "label": "Image"
+            },
+            {
+              "type": "url",
+              "id": "link",
+              "label": "Link URL"
+            },
+            {
+              "type": "text",
+              "id": "boton",
+              "label": "Button Text",
+              "default": "Ver más"
+            }
+		]
+     },
+     {
+        "type": "blog4",
+        "name": "Blog Type 4",
+		"settings": [
+			{
+              "type": "text",
+              "id": "epigrafe",
+              "label": "Epígrafe",
+              "default": "Epígrafe"
+            },
+            {
+              "type": "text",
+              "id": "title",
+              "label": "Title",
+              "default": "Title"
+            },
+            {
+              "type": "richtext",
+              "id": "bajada",
+              "label": "Text",
+              "default": "<p>Lorem ikpsum dolor sit</p>"
+            },
+            {
+              "type": "image_picker",
+              "id": "image1",
+              "label": "Image 1"
+            },
+            {
+              "type": "image_picker",
+              "id": "image2",
+              "label": "Image 2"
+            },
+            {
+              "type": "image_picker",
+              "id": "image3",
+              "label": "Image 3"
+            },
+            {
+              "type": "url",
+              "id": "link",
+              "label": "Link URL"
+            },
+            {
+              "type": "text",
+              "id": "boton",
+              "label": "Button Text",
+              "default": "Ver más"
+            }
+		]
+     }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,45 @@
+<div class="clear registro">
+
+      <h1 class="home-title home-title-account">Regístrate</h1>
+    {% form 'create_customer' %}
+
+      
+
+	  <div class="form-field">
+		  <input type="text" name="customer[first_name]" id="FirstName" placeholder="Nombre" {% if form.first_name %}value="{{ form.first_name }}"{% endif %} autocapitalize="words" autofocus>
+	  </div>
+
+	  <div class="form-field">
+	      <input type="text" name="customer[last_name]" id="LastName" placeholder="Apellido" {% if form.last_name %}value="{{ form.last_name }}"{% endif %} autocapitalize="words">
+	  </div>
+
+	  <div class="form-field">
+	      <input type="email" name="customer[email]" id="Email" placeholder="Correo" {% if form.errors contains "email" %} class="error"{% elsif form.email %} value="{{ form.email }}"{% endif %} autocorrect="off" autocapitalize="off">
+	  </div>
+
+	  <div class="form-field">
+	      <input type="password" name="customer[password]" id="CreatePassword" placeholder="Contraseña" {% if form.errors contains "password" %} class="error"{% endif %}>
+	  </div>
+
+      <div>
+        <input type="submit" value="Enviar" class="btn">
+      </div>
+  
+  {{ form.errors | default_errors }}
+
+      <div class="olvidaste links">
+	      
+        <a href="{{ shop.url }}/account">Iniciar sesión</a>
+        <a href="{{ shop.url }}">Cancelar</a>
+      </div>
+
+    {% endform %}
+
+
+</div>
+<script>
+  function isEmail(email) {
+  var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+  return regex.test(email);
+}
+</script>

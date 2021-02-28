@@ -1,0 +1,64 @@
+<div class="textimage2 grid">
+  <div class="item">
+    <a href="{{ section.settings.link }}"><img src="{{ section.settings.image | img_url: "master" }}" /></a>
+  </div>
+  <div class="item">
+    <h6>{{ section.settings.epigrafe }}</h6>
+    <h3 class="h1">{{ section.settings.title }}</h3>
+    <div class="bajada">
+      {{ section.settings.bajada }}
+    </div>
+    <a href="{{ section.settings.link }}" class="more boton2">{{ section.settings.boton }}</a>
+  </div>
+  <div class="item"></div>
+</div>
+
+
+{% schema %}
+{
+  "name": "Text + Image 2",
+  "class": "index-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "epigrafe",
+      "label": "Epígrafe",
+      "default": "Epígrafe"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Title"
+    },
+    {
+      "type": "richtext",
+      "id": "bajada",
+      "label": "Text",
+	  "default": "<p>Lorem ikpsum dolor sit</p>"
+    },
+	{
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "Link URL"
+    },
+    {
+      "type": "text",
+      "id": "boton",
+      "label": "Button Text",
+      "default": "Ver más"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Text + Image 2",
+      "category": "Text + Image"
+    }
+  ]
+}
+{% endschema %}

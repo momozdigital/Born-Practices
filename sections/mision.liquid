@@ -1,0 +1,70 @@
+
+{% if section.blocks.size > 0 %}
+
+	{% for block in section.blocks %}
+
+        <div class="tienda-pa">
+            <div class="div-block-184">
+                <div class="div-block-183">
+                    {{ block.settings.image | img_url: 'master' | img_tag: block.settings.image.alt }}
+                    <div class="texto-mision-copy">
+                        <h1 class="titlo-mision">
+                          {{ block.settings.title }}
+                      </h1>
+
+                        <p class="txt-tienda">
+                            {{ block.settings.text }}
+                      </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+	{% endfor %}
+
+{% endif %}
+
+{% schema %}
+{
+  "name": "Mision",
+  "max_blocks": 1,
+  "blocks": [
+    {
+      "type": "image",
+      "name": "Mision",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link URL"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Title Block"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text",
+		  "default": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Misión",
+      "category": "Text"
+    }
+  ]
+}
+{% endschema %}
+{% stylesheet %}
+{% endstylesheet %}

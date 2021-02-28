@@ -1,0 +1,55 @@
+@media only screen and (min-width: 100px) and (max-width: 1023px) {
+  main {
+  	margin-top: 200px;
+  }
+  #shopify-section-barra {
+  	position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    z-index: 5000;
+  }
+  #shopify-section-header {
+  	position: fixed !important;
+    z-index: 4000 !important;    
+    top: 0;
+    left: 0;
+    transition: 0.6s;
+  }
+  .sticky {
+  	background: #fff;
+    color: #fff;    
+    top: 0 !important;
+    border-bottom: 1px solid #a09e9e;
+    height: 100px;
+  }
+  .sticky .search-form {
+  	display: none;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+  main {
+  	margin-top: 210px;
+  }
+  header {
+  	margin: 0 20px !important;
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    z-index: 1000;
+    overflow: visible;
+    height: 168px;
+    padding: 0;
+  }
+  header .icons .search-form {
+  	right: -2px !important;
+  }
+  header .icons {
+  	right: 5vw;
+  }
+  .sticky {
+  	top: -10px !important;
+  }
+}

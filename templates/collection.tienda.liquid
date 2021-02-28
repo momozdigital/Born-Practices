@@ -1,0 +1,15 @@
+{% section 'tienda-images' %}
+{% section 'tienda-icons' %}
+{% section 'collection-template' %}
+{% section 'tienda-coms' %}
+
+<script>
+  $(document).ready(function(){
+    if(window.location.href === "{{ shop.url }}/collections/all"){
+      
+    } else {
+		$('#shopify-section-tienda-images').hide(1);
+        $('#shopify-section-tienda-icons').hide(1);
+    }
+  });
+</script>

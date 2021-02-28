@@ -1,0 +1,211 @@
+<div class="carrito">
+
+  
+
+
+<form action="/cart" method="post">
+  
+  <div class="header grid">
+	<h2 class="h3">Carro de compras:</h2>
+	{% if cart.item_count > 0 %}
+    	<div class="links">
+			<a href="javascript:history.back()">Seguir comprando</a>
+            <input type="submit" name="update" value="Actualizar Carro" class="update-cart" />
+        </div>
+    {% endif %}
+  </div>
+  
+  {% if cart.item_count > 0 %}
+  <div class="cart-table">
+    <table>
+
+      <tbody>
+
+      {% for item in cart.items %}    
+
+        {% comment %}
+        Determining the handle of the collection that was last seen for the 'continue shopping' link.
+        {% endcomment %}
+
+        {% assign collection_url = item.product.collections.last.url %}
+        {% if collection_url == '/collections/frontpage' or collection_url == blank %}
+          {% assign collection_url = '/collections/all' %}
+        {% endif %}
+
+        {% if forloop.first %}
+          {% assign continue_shopping_url = collection_url %}
+        {% endif %}
+
+        <tr class="grid" data-var="{{ item.id }}">
+          <td class="td-main grid">
+            <a class="td-img" href="{{ collection_url }}{{ item.url }}">
+              <img src="{{ item | img_url: 'compact' }}"  alt="{{ item.title | escape }}" />
+            </a>
+            <div class="text">
+            <h2>
+              <a href="{{ collection_url }}{{ item.url }}">
+                {{ item.title }}
+              </a>
+            </h2>
+            {% assign properties_amount = item.properties | size %}
+            {% if properties_amount > 0 %}
+              {% for p in item.properties %}
+                {% unless p.last == blank %}
+                  {{ p.first }}:
+                  {% if p.last contains '/uploads/' %}
+                    <a href="{{ p.last }}">{{ p.last | split: '/' | last }}</a>
+                  {% else %}
+                    {{ p.last }}
+                  {% endif %}
+                {% endunless %}
+              {% endfor %}
+            {% endif %}
+            <h3>{{ item.vendor }}</h3>
+            </div>
+          </td>
+          <td class="td-quantity">
+              <input type="number" class="cart__quantity-selector" name="updates[]" id="updates_{{ item.key }}" value="{{ item.quantity }}" {{ bold_qty_attr }} min="0" aria-label="{{ 'cart.label.quantity' | t }}">
+          </td>
+          <td class="td-total">{{ item.line_price | money }}</td>
+          <td class="td-quitar">
+          	<a href="/cart/change?line={{ forloop.index }}&quantity=0">Quitar</a>
+          </td>
+        </tr>
+      {% endfor %}
+
+      </tbody>
+
+    </table>
+  </div>
+  
+  
+  <div class="cart-total grid">
+    
+    <div class="solo-mobile seguir-mobile">
+      {% if cart.item_count > 0 %}
+    	<div class="links">
+			<a href="javascript:history.back()">Seguir comprando</a>
+            <input type="submit" name="update" value="Actualizar Carro" class="update-cart" />
+        </div>
+      {% endif %}
+    </div>
+    
+    <div class="item item-regalos">
+      <a class="ver-regalos">¿Lo quieres para regalo?</a>
+      
+        {% include 'gift-wrapping' %}
+	    {% include 'gift-wrapping-2' %}
+	    {% include 'gift-wrapping-3' %}
+      
+      <script>
+        $(document).ready(function(){
+          if ( $('tr.grid[data-var="31557761302614"]').length ) {
+              $('.carrito .cart-total .item-regalos .all').addClass('show');
+              $('.carrito .cart-total .ver-regalos').addClass('active');
+          }
+          if ( $('tr.grid[data-var="31557761237078"]').length ) {
+              $('.carrito .cart-total .item-regalos .all').addClass('show');
+              $('.carrito .cart-total .ver-regalos').addClass('active');
+          }
+          if ( $('tr.grid[data-var="31557761138774"]').length ) {
+              $('.carrito .cart-total .item-regalos .all').addClass('show');
+              $('.carrito .cart-total .ver-regalos').addClass('active');
+          }
+        });
+      </script>
+      
+    </div>
+    <div class="cart-total-right">
+      <div class="top-items">
+        <div class="item">
+          <h4>Subtotal:</h4>
+        </div>
+        <div class="item">
+          <h2>{{ cart.total_price | money }}</h2>	  
+        </div>
+        
+      </div>
+      <div class="seis-cuotas">
+      	<img src="https://cdn.shopify.com/s/files/1/0262/7046/6134/t/17/assets/6_cuotas.png?v=1610138408" alt="seis-cuotas" />
+      </div>
+    </div>  
+  </div>
+  
+  <input class="boton" type="submit" name="checkout" value="Ir a pagar" />    
+  <div class="cuotas">    
+  	<p class="disclaimer">Los códigos de descuento y los costos de envío se agregarán durante el pago.</p>
+  </div>
+  
+    
+  {% if additional_checkout_buttons %}
+    {{ content_for_additional_checkout_buttons }}
+  {% endif %}
+  
+  {% comment %}
+  For the special instructions to be submitted with order,
+  we need to use a name attribute set to 'note'.
+  {% endcomment %}
+  <!-- p>Special instructions for seller</p -->
+  <!-- textarea name="note">{{ cart.note }}</textarea -->
+    
+	{% else %}
+
+  
+</form>
+
+
+
+  <div style="text-align: center; padding: 30px;" class="empty-cart">
+  	<h3>Parece que tu carro está vacío</h3>
+    <h2>Continúa navegando <a href="/collections/all">aquí</a>.</h2>
+  </div>
+
+{% endif %}
+  
+ <script>
+   $(document).ready(function(){
+	   $(".button").on("click", function() {
+
+          var $button = $(this);
+          var oldValue = $button.parent().find("input").val();
+
+          if ($button.text() == "+") {
+              var newVal = parseFloat(oldValue) + 1;
+            } else {
+           // Don't allow decrementing below zero
+            if (oldValue > 0) {
+              var newVal = parseFloat(oldValue) - 1;
+            } else {
+              newVal = 0;
+            }
+          }
+
+          $button.parent().find("input").val(newVal);
+          $("input.update-cart").click();
+
+        });
+     
+     var winW = $(window).width();
+     
+     if ( winW < 830 ) {
+       $('.carrito tr').each(function(){
+         var thisText = $(this).find('.text');
+         console.log('thisText: ' + thisText);
+         $(this).children('.td-total').appendTo(thisText);
+         $(this).children('.td-quitar').appendTo(thisText);
+       });
+     }
+     
+     });
+  </script>
+  
+</div>
+
+<div>
+  <!-- Powered by DataCue [https://www.datacue.co/] -->
+  <div data-dc-products></div>
+</div>
+
+{% comment %}
+{% section 'cart-collection' %}
+{% endcomment %}

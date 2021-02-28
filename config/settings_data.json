@@ -1,0 +1,1070 @@
+{
+  "current": {
+    "pt_show_refine": true,
+    "pt_show_collection_group": true,
+    "pt_show_clear": true,
+    "pt_show_view_all": false,
+    "pt_show_collection_count": true,
+    "pt_show_show_single_group": true,
+    "pt_scroll_filter_group": true,
+    "pt_show_inactive_filters": false,
+    "pt_force_dropdown": false,
+    "pt_hide_headers": true,
+    "pt_float_filters": "false",
+    "pt_refine_text": "Filtrar por:",
+    "pt_clear_text": "Ver todo",
+    "pt_view_all_text": "Ver todo",
+    "pt_tags_text": "Tags",
+    "pt_sort_by_text": "Ordenar por",
+    "pt_collection_text": "Colección",
+    "pt_search_placeholder_text": "buscar...",
+    "pt_mobile_text": "Filtrar",
+    "pt_show_tags_group": false,
+    "pt_show_tags_grouped": false,
+    "pt_show_sort_by_group": true,
+    "pt_sort_position": "bottom",
+    "pt_sort_by_dropdown": false,
+    "pt_show_sort_by_checkboxes": false,
+    "pt_sort_manual_text": "Destacados",
+    "pt_sort_price_asc_text": "Precio: Menor a Mayor",
+    "pt_sort_price_desc_text": "Precio: Mayor a Menor",
+    "pt_sort_title_asc_text": "A-Z",
+    "pt_sort_title_desc_text": "Z-A",
+    "pt_sort_created_asc_text": "Más antiguos",
+    "pt_sort_created_desc_text": "Más nuevos",
+    "pt_sort_best_selling_text": "Mejor Vendidos",
+    "color_pt_header_text": "#222",
+    "color_pt_header_border": "#dddddd",
+    "color_pt_header_top_border": "rgba(0,0,0,0)",
+    "pt_header_size": 19,
+    "pt_header_font_override": false,
+    "pt_header_font": "work_sans_n6",
+    "pt_header_weight": "600",
+    "color_pt_links": "#222",
+    "color_pt_links_selected": "#333",
+    "color_pt_links_hover": "#444",
+    "color_pt_counts_color": "#888",
+    "pt_links_size": 14,
+    "pt_links_font_override": false,
+    "pt_links_font": "work_sans_n6",
+    "pt_links_weight": "300",
+    "pt_show_checkboxes": true,
+    "pt_checkbox_style": "0",
+    "pt_checkbox_swatch_style": "1",
+    "pt_checkbox_primary_color": "#888",
+    "pt_checkbox_secondary_color": "#444444",
+    "pt_checkbox_size": 12,
+    "pt_checkbox_size_swatch": 12,
+    "pt_checkbox_checkbox_align": "top",
+    "pt_color_swatch_type": "swatch",
+    "color_pt_clear_bg": "#f2eee6",
+    "color_pt_clear_text": "#222222",
+    "color_pt_clear_bg_hover": "#f2eee6",
+    "color_pt_clear_text_hover": "#222",
+    "color_pt_bg": "#f2eee6",
+    "color_pt_bg_border": "rgba(0,0,0,0)",
+    "pt_bg_padding": 0,
+    "pt_bg_radius": 3,
+    "pt_mobile_enable": true,
+    "pt_accordion_enable": false,
+    "pt_accordion_mode": "all",
+    "pt_mobile_color": "#222",
+    "pt_mobile_max_width": "767px",
+    "pt_mobile_vertical": 7,
+    "pt_mobile_text_vertical": 14,
+    "pt_mobile_font_override": false,
+    "pt_mobile_font": "work_sans_n6",
+    "pt_mobile_size": "",
+    "pt_mobile_hide_selected": true,
+    "color_pt_small_box_bg": "#f2eee6",
+    "color_pt_small_box_bg_hover": "#00a5fd",
+    "color_pt_small_box_text_hover": "#ffffff",
+    "pt_small_box_radius": 3,
+    "pt_small_box_border": true,
+    "pt_small_box_shadow": true,
+    "pt_view_more_enable": false,
+    "pt_view_more_count": 10,
+    "pt_view_more_text": "View More...",
+    "pt_apply_button_enable": false,
+    "pt_apply_button_text": "Apply",
+    "pt_apply_button_color": "#0084ff",
+    "pt_apply_button_hover_color": "#0670cf",
+    "pt_apply_button_disabled_color": "#cccccc",
+    "pt_sticky_enable": false,
+    "pt_sticky_mode": "basic",
+    "pt_sticky_selector": ".filter-menu",
+    "pt_sticky_offset": "25px",
+    "pt_sticky_min_width": "767px",
+    "pt_ajax_enable": false,
+    "pt_ajax_selector": "#main",
+    "pt_ajax_script": ";",
+    "pt_show_only_on_collections": false,
+    "pt_clear_to_current_collection": false,
+    "pt_desktop_always_show_selected": true,
+    "pt_filter_padding": 6,
+    "pt_temporary_disable": false,
+    "checkout_header_image": "",
+    "checkout_logo_image": "shopify:\/\/shop_images\/logo_600x_78572b0f-af89-43b6-a4ad-4085187686d1.png",
+    "checkout_logo_position": "left",
+    "checkout_logo_size": "small",
+    "checkout_body_background_image": "",
+    "checkout_body_background_color": "#f2eee6",
+    "checkout_input_background_color_mode": "white",
+    "checkout_sidebar_background_image": "",
+    "checkout_sidebar_background_color": "#fafafa",
+    "checkout_heading_font": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
+    "checkout_body_font": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
+    "checkout_accent_color": "#000000",
+    "checkout_button_color": "#000000",
+    "checkout_error_color": "#e32c2b",
+    "customer_layout": "theme",
+    "example_option": "option",
+    "sections": {
+      "header": {
+        "type": "header",
+        "settings": {
+          "logo": "shopify:\/\/shop_images\/logo_0d1f3b93-d90e-44c7-befa-7e427d5b9999.png",
+          "nav_menu": "menu-superior",
+          "nav_home": "menu-superior",
+          "facebook": "#",
+          "instagram": "#",
+          "pinterest": "#",
+          "twitter": "#"
+        }
+      },
+      "footer": {
+        "type": "footer",
+        "settings": {
+          "blog": "https:\/\/borncl.myshopify.com\/collections\/blog",
+          "facebook": "https:\/\/m.facebook.com\/bornshop.cl",
+          "instagram": "https:\/\/www.instagram.com\/bornshop.cl\/",
+          "image": "shopify:\/\/shop_images\/5d70420b912cd16a546fbf8e_B_K_Concept_Store-p-500.png",
+          "menu1": "footer",
+          "text1": "<p><strong>Mall Parque Arauco — Piso Diseño L569.<br\/><\/strong><a href=\"https:\/\/www.google.com\/maps\/place\/Parque+Arauco\/@-33.4021934,-70.5804381,17z\/data=!3m1!4b1!4m5!3m4!1s0x9662cf28a4680247:0x278141c17f8ab414!8m2!3d-33.4021934!4d-70.5782494\" title=\"https:\/\/www.google.com\/maps\/place\/Parque+Arauco\/@-33.4021934,-70.5804381,17z\/data=!3m1!4b1!4m5!3m4!1s0x9662cf28a4680247:0x278141c17f8ab414!8m2!3d-33.4021934!4d-70.5782494\">Av Presidente Kennedy 5413, Las Condes.<\/a><br\/>Lunes a Domingo: 10:00 — 18:30<\/p><p> <\/p><p><\/p>",
+          "text2": "<p><strong>Contacto<\/strong><br\/>Mail: <a href=\"mailto:contacto@bornshop.cl\" title=\"mailto:contacto@bornshop.cl\">contacto@bornshop.cl<\/a><br\/>Tel: +56 9 3428 5563<\/p>"
+        }
+      },
+      "barra": {
+        "type": "barra",
+        "settings": {
+          "bajada": "Despachos a todo Chile <a href=\"https:\/\/bornshop.cl\/pages\/envios\">ver más <\/a>",
+          "color": "#ff5107",
+          "color-text": "#f2f0ed",
+          "color-link": "#f2f0ed"
+        }
+      },
+      "mini-cart": {
+        "type": "mini-cart",
+        "settings": {}
+      },
+      "1570574956143": {
+        "type": "main-links",
+        "disabled": true,
+        "blocks": {
+          "1570574956143-3": {
+            "type": "text",
+            "settings": {
+              "link": "https:\/\/bornshop.cl\/pages\/envios-seguros",
+              "title": "ENVÍOS SEGUROS",
+              "bajada": "<p>Hemos tomado todas las medidas necesarias.<\/p>"
+            }
+          },
+          "1570574956143-0": {
+            "type": "text",
+            "settings": {
+              "link": "shopify:\/\/pages\/nuestra-tienda",
+              "title": "TIENDA",
+              "bajada": "<p>¿Conoces nuestra tienda en el Piso Diseño de Parque Arauco? Mira aquí!<\/p>"
+            }
+          },
+          "1570574956143-1": {
+            "type": "text",
+            "settings": {
+              "link": "https:\/\/bornshop.cl\/blogs\/nuevo-post\/receta-galletas-chips-chocolate-por-clementina-chile",
+              "title": "BLOG",
+              "bajada": "<p>Receta: Galletas chips chocolate<br>Para cocinar en familia<\/p>"
+            }
+          },
+          "1570574956143-2": {
+            "type": "text",
+            "settings": {
+              "title": "¿TIENES PREGUNTAS?",
+              "bajada": "Escríbenos por el chat o a contacto@bornshop.cl"
+            }
+          }
+        },
+        "block_order": [
+          "1570574956143-3",
+          "1570574956143-0",
+          "1570574956143-1",
+          "1570574956143-2"
+        ],
+        "settings": {}
+      },
+      "1570626823761": {
+        "type": "text-image-1",
+        "disabled": true,
+        "settings": {
+          "epigrafe": "Tienda — Colecciones",
+          "title": "Todo para tu bebé y los mejores regalos de Babyshower",
+          "bajada": "<p><strong> <\/strong><\/p>",
+          "image": "shopify:\/\/shop_images\/Banner-Cat-Bebe.gif",
+          "link": "shopify:\/\/collections\/cat-bebe",
+          "boton": "Ver la colección",
+          "featured_collection": ""
+        }
+      },
+      "1570628318751": {
+        "type": "text-image-2",
+        "disabled": true,
+        "settings": {
+          "epigrafe": "Blog — 10 de Julio 2020",
+          "title": "Libro Tu Mente Es Como El Cielo.",
+          "bajada": "<p>“Tu mente es como el cielo. Algunas veces está clara, despejada y azul. Otras veces está alborotada, tormentosa, negra e inquieta”<br\/><br\/><\/p><p>Reseña por María José Carmona.<\/p><p><a href=\"https:\/\/www.instagram.com\/_mjcarmona\/\" title=\"@_mjcarmona\">@_mjcarmona<\/a><\/p><p><\/p><p><\/p>",
+          "image": "shopify:\/\/shop_images\/Copia_de_IMG_7290.jpg",
+          "link": "shopify:\/\/blogs\/nuevo-post\/libro-tu-mente-es-como-el-cielo-resena-por-maria-jose-carmona",
+          "boton": "Leer más"
+        }
+      },
+      "tienda-images": {
+        "type": "tienda-images",
+        "settings": {
+          "image1": "shopify:\/\/shop_images\/01-2_36efaee3-7b50-470a-a740-52ffe9dd8900.jpg",
+          "link1": "shopify:\/\/collections\/ay-kasa",
+          "image2": "shopify:\/\/shop_images\/02_0e9810a0-c6bb-4326-8516-03f8ecb2e753.jpg",
+          "link2": "shopify:\/\/collections\/djeco-1",
+          "image3": "shopify:\/\/shop_images\/Quedate-en-casa.jpg",
+          "link3": "shopify:\/\/collections\/quedateencasa",
+          "image4": "shopify:\/\/shop_images\/04_38e3c4d6-f56d-43f0-a6b3-cf1504779b77.jpg",
+          "link4": "shopify:\/\/collections\/oli-carol"
+        }
+      },
+      "collection-template": {
+        "type": "collection-template",
+        "settings": {}
+      },
+      "tienda-icons": {
+        "type": "tienda-icons",
+        "blocks": {
+          "1570636042839": {
+            "type": "image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/5d6043d2e51102af49150825_Recurso_13.png",
+              "link": "#",
+              "title": "Hasta 12 cuotas<br>sin interés"
+            }
+          },
+          "1570636101969": {
+            "type": "image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/5d6ebac2449108a00e8fc19e_Recurso_5.png",
+              "link": "shopify:\/\/pages\/garantias",
+              "title": "Garantías"
+            }
+          },
+          "1570636130384": {
+            "type": "image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/5d702c30ea51483fa62d2bff_Recurso_34.png",
+              "link": "shopify:\/\/pages\/envios",
+              "title": "Retiro en Tienda <br>de Parque Arauco"
+            }
+          },
+          "1570636148206": {
+            "type": "image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/5d657bb91cb0781067bd918b_Recurso_6.png",
+              "link": "shopify:\/\/pages\/envios",
+              "title": "Despacho<br>a todo Chile."
+            }
+          }
+        },
+        "block_order": [
+          "1570636042839",
+          "1570636101969",
+          "1570636130384",
+          "1570636148206"
+        ],
+        "settings": {}
+      },
+      "tienda-coms": {
+        "type": "tienda-coms",
+        "blocks": {
+          "1570637377846": {
+            "type": "text",
+            "settings": {
+              "title": "¡Me encantó!",
+              "com": "<p>Preciosa la p&aacute;gina! Los felicito.<\/p>",
+              "nombre": "Rebeca Padrón",
+              "stars": "5"
+            }
+          },
+          "1570637426233": {
+            "type": "text",
+            "settings": {
+              "title": "Falta de productos",
+              "com": "<p>Increible la p&aacute;gina pero a&uacute;n le faltan&nbsp;ajustes para una buena navegaci&oacute;n&nbsp;<\/p>",
+              "nombre": "Jorge R",
+              "stars": "3"
+            }
+          }
+        },
+        "block_order": [
+          "1570637377846",
+          "1570637426233"
+        ],
+        "settings": {}
+      },
+      "blog-home": {
+        "type": "blog-home",
+        "blocks": {
+          "266b4f43-9cc8-49dc-b358-a62ddcfd0178": {
+            "type": "blog3",
+            "settings": {
+              "epigrafe": "Blog — 29 de enero 2021",
+              "title": "Nuevo Atlas De Los Lugares Que No Existen. Reseña por María José Carmona.",
+              "bajada": "<p><em>Nuevo Atlas de los lugares que no existen, <\/em>es un libro que te lleva a soñar, imaginar, mirar, sentir y jugar; una travesía por un mundo imaginado. Lugares que no existen y que de pronto se nos hacen realidad a través de estas páginas, donde se mezcla magia, creatividad e imaginación.<\/p>",
+              "image": "shopify:\/\/shop_images\/IMG_1145.jpg",
+              "link": "https:\/\/bornshop.cl\/blogs\/nuevo-post\/nuevo-atlas-de-los-lugares-que-no-existen-resena-por-maria-jose-carmona",
+              "boton": "Ver más"
+            }
+          },
+          "50abf056-c873-4e49-b6e8-5114142667d1": {
+            "type": "blog1",
+            "settings": {
+              "epigrafe": "Blog — 22 de enero 2020",
+              "title": "EzPz: La marca que cambió la manera en que comen los niños",
+              "bajada": "<p>¿Comer con los niños sin desorden? Parece imposible, pero no lo es. Con los productos de EzPz tanto ellos como sus padres se pueden beneficiar de comidas no solo más ‘limpias’ si no también más independientes y amables con la convivencia familiar. Acá te contamos todo sobre esta revolucionaria marca.<\/p>",
+              "image": "shopify:\/\/shop_images\/Mini-Cup-Kid-14-2.jpg",
+              "link": "https:\/\/bornshop.cl\/blogs\/nuevo-post\/ezpz-la-marca-que-cambio-la-manera-en-que-comen-los-ninos",
+              "boton": "Ver más"
+            }
+          },
+          "1602266350533": {
+            "type": "blog3",
+            "settings": {
+              "epigrafe": "Blog — 09 de octubre 2020",
+              "title": "Libro Tu Mente Es Como El Cielo. Reseña por María José Carmona.",
+              "bajada": "<p>“Tu mente es como el cielo. Algunas veces está clara, despejada y azul. Otras veces está alborotada, tormentosa, negra e inquieta”<\/p>",
+              "image": "shopify:\/\/shop_images\/Copia_de_IMG_7290.jpg",
+              "link": "https:\/\/bornshop.cl\/blogs\/nuevo-post\/libro-tu-mente-es-como-el-cielo-resena-por-maria-jose-carmona",
+              "boton": "Ver más"
+            }
+          },
+          "1601669304093": {
+            "type": "blog4",
+            "settings": {
+              "epigrafe": "Blog — 02 de octubre 2020",
+              "title": "¡Vamos al museo… sin salir de casa!",
+              "bajada": "<p>Los museos se han tomado múltiples plataformas para que sus paredes dejaran de ser el único lugar donde podemos disfrutar de su patrimonio. Las más importantes instituciones del mundo, y también locales, han abierto sus puertas de manera virtual con propuestas originales y didácticas. Acá les dejamos una selección de algunas de nuestras favoritas las que pueden visitar, literalmente, sin salir de casa.<\/p>",
+              "image1": "shopify:\/\/shop_images\/Captura_de_Pantalla_2020-09-30_a_la_s_12.24.05.png",
+              "image2": "shopify:\/\/shop_images\/Captura_de_Pantalla_2020-09-30_a_la_s_12.29.56.png",
+              "image3": "shopify:\/\/shop_images\/Captura_de_Pantalla_2020-09-30_a_la_s_12.05.32.png",
+              "link": "https:\/\/bornshop.cl\/blogs\/nuevo-post\/vamos-al-museo-sin-salir-de-casa",
+              "boton": "Ver más"
+            }
+          },
+          "1599146069861": {
+            "type": "blog1",
+            "settings": {
+              "epigrafe": "Blog — 03 de septiembre 2020",
+              "title": "Libro Mi Amigo: Reseña por María José Carmona",
+              "bajada": "<p><em>“El problema con el nuevo, no es que sea nuevo, es que es diferente”<\/em>.  Y así, nos encontramos con esta frase, en una de las primeras páginas de <strong><em>Mi amigo<\/em><\/strong>, delicado y profundo libro de la editorial Kókinos. Palabras que aterran, impactan, nos tocan profundamente y nos hace cuestionarnos.<\/p>",
+              "image": "shopify:\/\/shop_images\/Copia_de_IMG_7004.jpg",
+              "link": "https:\/\/bornshop.cl\/blogs\/nuevo-post\/resena-libro-mi-amigo",
+              "boton": "Ver más"
+            }
+          },
+          "1596484380102": {
+            "type": "blog3",
+            "settings": {
+              "epigrafe": "Blog — 03 de agosto 2020",
+              "title": "Aprender Jugando: Woodis",
+              "bajada": "<p>La nueva marca <strong>Woodis<\/strong> es una gran invitación a aprender jugando. Sus bloques permiten la libre creación de estructuras, formas y espacios, permitiendo desarrollar la creatividad e imaginación al ser un material desestructurado. <\/p>",
+              "image": "shopify:\/\/shop_images\/106380317_709163856610641_8907167673674426199_n-2.jpg",
+              "link": "https:\/\/bornshop.cl\/blogs\/nuevo-post\/aprender-jugando-woodis",
+              "boton": "Ver más"
+            }
+          },
+          "1595620216666": {
+            "type": "blog2",
+            "settings": {
+              "epigrafe": "Blog — 24 de julio 2020",
+              "title": "Testimonios en cuarentena: Ignacia Murtagh.",
+              "bajada": "<p>Se aislaron a mediados de marzo y desde ese día esta familia compuesta por la diseñadora Ignacia Murtagh (<a href=\"https:\/\/www.instagram.com\/ignaciamurtagh_\/\" title=\"Ignacia Murtagh\">@ignaciamurtagh_<\/a>), su marido Oltmann, sus hijos Emma (4) y Oltmann Jr. (1) y su perro Otto se han quedado en casa. En este refugio han disfrutado de eternas sesiones trabajando en su jardín, haciendo una huerta, también leyendo y pintando con acuarela. “Esta cuarentena el arte y la creatividad han sido una parte central de las actividades de los niños”, cuenta. Así han vivido estos días ‘en casa’.<\/p>",
+              "image": "shopify:\/\/shop_images\/Born_3.jpg",
+              "link": "https:\/\/bornshop.cl\/blogs\/nuevo-post\/testimonios-en-cuarentena-ignacia-murtagh",
+              "boton": "Ver más"
+            }
+          },
+          "1594394019656": {
+            "type": "blog4",
+            "settings": {
+              "epigrafe": "Blog — 10 de julio 2020",
+              "title": "Receta: Galletas chips chocolate",
+              "bajada": "<p>Para cocinar en familia.<strong> Por <\/strong><a href=\"https:\/\/www.instagram.com\/clementina.chile\/\" title=\"Clementina Chile\"><strong>@clementina.chile<\/strong><\/a><strong> <\/strong><\/p><p><\/p>",
+              "image1": "shopify:\/\/shop_images\/Receta_galletas_12.jpg",
+              "image2": "shopify:\/\/shop_images\/Receta_galletas_05.jpg",
+              "image3": "shopify:\/\/shop_images\/Receta_galletas_08.jpg",
+              "link": "https:\/\/bornshop.cl\/blogs\/nuevo-post\/receta-galletas-chips-chocolate-por-clementina-chile",
+              "boton": "Ver más"
+            }
+          },
+          "1593117154213": {
+            "type": "blog2",
+            "settings": {
+              "epigrafe": "Blog — 25 de junio 2020",
+              "title": "Testimonios en cuarentena: Antonia Cafati.",
+              "bajada": "<p>Llevan semanas de cuarentena y, mirando hacia atrás, estos días de confinamiento han sido más tranquilos de lo que se imaginaba. La cocinera, y co autora de los libros La Mesa: Cocina Natural y Reina Palta, ha visto como sus hijos (de 8 y 3 años) han encontrado sus espacios para crear nuevos juegos y entretenerse libres de tecnología. “Juegan mucho juntos a perseguirse, esconderse, bailar, etc.”, cuenta. Así han vivido estos días ‘en casa’.<\/p><p><\/p><p>—<br\/>Instagram: <a href=\"https:\/\/www.instagram.com\/brotesyraices\/\" title=\"Instagram Antonia Cafati\">@brotesyraices<\/a><\/p>",
+              "image": "shopify:\/\/shop_images\/Copia_de_Antonia_Cafati0_915d1165-05ac-4341-807e-e9e57d76be93.jpg",
+              "link": "https:\/\/bornshop.cl\/blogs\/nuevo-post\/testimonios-en-cuarentena-antonia-cafati",
+              "boton": "Ver más"
+            }
+          },
+          "1592002615307": {
+            "type": "blog1",
+            "settings": {
+              "epigrafe": "Blog — 12 de junio 2020",
+              "title": "La Pequeña Oruga Glotona: Reseña por María José Carmona.",
+              "bajada": "<p>“La Pequeña Oruga Glotona” de Eric Carle, se publicó por primera vez en 1969, hace ya más de 50 años, y sigue siendo uno de los libros que no puede faltar en nuestra biblioteca. Un libro que se debe leer en los primeros años de vida sí o sí.<\/p>",
+              "image": "shopify:\/\/shop_images\/Copia_de_img_20180916_111006-01_copia.jpg",
+              "link": "https:\/\/bornshop.cl\/blogs\/nuevo-post\/la-pequena-oruga-glotona-resena-por-maria-jose-carmona",
+              "boton": "Ver más"
+            }
+          },
+          "1591196279004": {
+            "type": "blog2",
+            "settings": {
+              "epigrafe": "Blog — 03 de junio 2020",
+              "title": "Testimonios en cuarentena: Angela Poblete.",
+              "bajada": "<p>Después de más de 11 semanas de aislamiento esta familia -compuesta por Ángela, Iván y los hijos Julieta (13), Iván (5) y Teo (11 meses)- ha logrado equilibrar diversión, manualidades con materiales reciclados, infinitos puzzles con una organización en las labores del día a día para que tanto el teletrabajo como las teletareas, funcionen. Pero, sobre todo, han disfrutado de lo bueno de pasar más tiempo juntos. Acá nos cuentan un poco más de cómo han vivido estos días ‘en casa’.<\/p>",
+              "image": "shopify:\/\/shop_images\/Portada_faa230c7-ba48-4591-832b-2f47824bd8f6.jpg",
+              "link": "https:\/\/bornshop.cl\/blogs\/nuevo-post\/testimonios-en-cuarentena-angela-poblete",
+              "boton": "Ver más"
+            }
+          },
+          "1590438484947": {
+            "type": "blog3",
+            "settings": {
+              "epigrafe": "Blog — 25 de mayo 2020",
+              "title": "El Monstruo De Colores: Reseña por María José Carmona.",
+              "bajada": "<p>Hoy quiero hablar de un libro con el que niños y niñas quedarán encantados desde su primera lectura, y seguro se los seguirán pidiendo leer! Y es que su autora, Anna Llenas, logra cautivarlos desde todos los aspectos, aquí les cuento un poco de ese no sé qué, y que ha hecho a este libro convertirse en un favorito de muchas almas infantiles.<\/p>",
+              "image": "shopify:\/\/shop_images\/WhatsApp_Image_2020-03-20_at_12.32.25.jpg",
+              "link": "https:\/\/bornshop.cl\/blogs\/nuevo-post\/resena-el-monstruo-de-colores",
+              "boton": "Ver más"
+            }
+          },
+          "1589396356818": {
+            "type": "blog2",
+            "settings": {
+              "epigrafe": "Blog — 13 de mayo 2020",
+              "title": "Niños (en casa) y en movimiento.",
+              "bajada": "<p>En estos días de aislamiento y de pasar infinitas horas en la casa sigue siendo muy importante movernos y fomentar la actividad física en los niños. ¿Por qué? Una rutina de movimiento con los niños es clave para la continuidad de su desarrollo motor, psicológico y también para mantenerse sanos durante estos días de aislamiento.<\/p>",
+              "image": "shopify:\/\/shop_images\/91544338_251655065974447_270005188493476088_n-2.jpg",
+              "link": "https:\/\/bornshop.cl\/blogs\/nuevo-post\/ninos-en-casa-y-en-movimiento",
+              "boton": "Ver más"
+            }
+          },
+          "1588622797468": {
+            "type": "blog1",
+            "settings": {
+              "epigrafe": "Blog — 5 de mayo 2020",
+              "title": "Tarjeta Día de la Mamá x Gertrudis Shaw",
+              "bajada": "<p>&quot;Me inspiré en mi mamá y en las flores del patio. Mi mamá es paisajista de corazón. Ella plantó las flores del jardín, hay hortensias, mini margaritas, lavandas, muchas flores silvestres. Las cuida como si fueran hijas de ella.&quot;<\/p>",
+              "image": "shopify:\/\/shop_images\/Tarjeta-DiaDeLaMama.jpg",
+              "link": "https:\/\/bornshop.cl\/blogs\/nuevo-post\/tarjeta-dia-de-la-mama-x-gertrudis-shaw",
+              "boton": "Ver más"
+            }
+          },
+          "1587649836985": {
+            "type": "blog3",
+            "settings": {
+              "epigrafe": "Blog — 23 de abril 2020",
+              "title": "Insectopedia: Reseña por María José Carmona.",
+              "bajada": "<p><em>Insectopedia<\/em>, un libro, que de existir en mi infancia, lo habría tenido sí o sí, de eso no hay duda. Porque ¿quiénes no nos quedamos alucinados mirando hormigas arrastrar un grano de azúcar? ¿O asombrados por la sola belleza de las chinitas y sus frágiles alas que aparecían solamente al emprender vuelo?<\/p>",
+              "image": "shopify:\/\/shop_images\/image5-2.jpg",
+              "link": "https:\/\/bornshop.cl\/blogs\/nuevo-post\/insectopedia-resena-por-_mjcarmona",
+              "boton": "Ver más"
+            }
+          },
+          "1586826146536": {
+            "type": "blog2",
+            "settings": {
+              "epigrafe": "Blog — 13 de abril 2020",
+              "title": "Tallarines de panqueques de espinaca con salsa de queso y pollo.",
+              "bajada": "<p>Una receta de Virginia Demaria para Born.<\/p>",
+              "image": "shopify:\/\/shop_images\/IMG_5009-2_copia.jpg",
+              "link": "https:\/\/bornshop.cl\/blogs\/nuevo-post\/tallarines-de-panqueques-de-espinaca-con-salsa-de-queso-y-pollo",
+              "boton": "Ver más"
+            }
+          },
+          "1586455646224": {
+            "type": "blog1",
+            "settings": {
+              "epigrafe": "Blog — 9 de abril 2020",
+              "title": "Máscaras de conejos con texturas.",
+              "bajada": "<p>DIY por @haceramano<\/p>",
+              "image": "shopify:\/\/shop_images\/portada_f898f787-37e4-4867-9bb3-46fa0109b393.jpg",
+              "link": "https:\/\/bornshop.cl\/blogs\/nuevo-post\/mascaras-de-conejos-con-texturas",
+              "boton": "Ver más"
+            }
+          },
+          "1586368770922": {
+            "type": "blog4",
+            "settings": {
+              "epigrafe": "Blog — 8 de abril 2020",
+              "title": "Descargables para grandes y chicos; Conejo de Pascua x Gertrudis Shaw.",
+              "bajada": "",
+              "image1": "shopify:\/\/shop_images\/blog1.png",
+              "image2": "shopify:\/\/shop_images\/blog2.png",
+              "image3": "shopify:\/\/shop_images\/blog3.png",
+              "link": "https:\/\/bornshop.cl\/blogs\/nuevo-post\/conejo-de-pascua-x-gertrudis-shaw",
+              "boton": "Ver más"
+            }
+          },
+          "1585143470939": {
+            "type": "blog2",
+            "settings": {
+              "epigrafe": "Blog — 25 de marzo",
+              "title": "Consejos para vivir el aislamiento en familia (entretenidos y felices)",
+              "bajada": "<p>En estos días de aislamiento mantener el equilibro es complejo tanto para los padres como para los niños. Cuando cambian, por completo, las rutinas es importante mantener la calma y ver más allá del día a día. Sin presiones, pero con organización. ¿Cómo lograrlo? Acá les dejamos algunas ideas:   <\/p>",
+              "image": "shopify:\/\/shop_images\/Copia_de_IMG_20200322_180721-2.jpg",
+              "link": "https:\/\/bornshop.cl\/blogs\/nuevo-post\/consejos-para-vivir-felices-y-entretenidos-el-aislamiento-en-familia",
+              "boton": "Ver más"
+            }
+          },
+          "1581626926510": {
+            "type": "blog3",
+            "settings": {
+              "epigrafe": "Blog — 13 de febrero 2019",
+              "title": "¡Verano al aire libre!",
+              "bajada": "<p><strong>Verano, qué bueno que estás aquí.<\/strong><\/p><p>Con la llegada de los días más cálidos ya no hay excusas para estar encerrados en la casa ¡es hora de salir al aire libre! Los parques, la naturaleza y las actividades <em>outdoor<\/em> nos están esperando.<\/p>",
+              "image": "shopify:\/\/shop_images\/Mesa_de_trabajo_1_d30e5073-7f91-4342-8f38-69e9dafb1e8c.png",
+              "link": "https:\/\/bornshop.cl\/blogs\/nuevo-post\/verano-al-aire-libre",
+              "boton": "Ver más"
+            }
+          },
+          "1580840725930": {
+            "type": "blog2",
+            "settings": {
+              "epigrafe": "Blog — 4 de febrero 2020",
+              "title": "En vacaciones: Lo bueno de leer y 4 libros para disfrutar este verano.",
+              "bajada": "<p>Sabemos que fomentar el hábito de la lectura en nuestros hijos en beneficioso, pero ¿hasta que extensión es capaz de generar un impacto real en sus vidas? Leer en voz alta a nuestros niños puede hacer diferencias significativas. Acá les contamos de sus múltiples ventajas, y además repasamos títulos imperdibles para disfrutar estas vacaciones que puedes encontrar en Born. <\/p>",
+              "image": "shopify:\/\/shop_images\/vsco_051415-2.jpg",
+              "link": "https:\/\/bornshop.cl\/blogs\/nuevo-post\/en-vacaciones-lo-bueno-de-leer-y-4-libros-para-disfrutar-este-verano",
+              "boton": "Ver más"
+            }
+          },
+          "1580832196519": {
+            "type": "blog1",
+            "settings": {
+              "epigrafe": "Blog — 17 de diciembre 2019",
+              "title": "Figuras de piedras",
+              "bajada": "<p>Esta actividad se convertirá en una de las favoritas de lxs niñxs. Es fácil de hacer, estimula la creatividad, el aprendizaje y también la curiosidad.<\/p>",
+              "image": "shopify:\/\/shop_images\/02_dd7fdf75-61cb-4853-b701-589cfe1002da.png",
+              "link": "https:\/\/vr6vp3jpop3bxpp9-26270466134.shopifypreview.com\/blogs\/nuevo-post\/articles?preview_key=16a576a015a74aa2efb9a2df4b090335",
+              "boton": "Ver más"
+            }
+          },
+          "1575579659562": {
+            "type": "blog4",
+            "settings": {
+              "epigrafe": "Blog — 05 de diciembre 2019",
+              "title": "Tattoo Party Meri Meri",
+              "bajada": "<p>Hace una semana celebramos en nuestra tienda una Tattoo Party! Con los tatuajes temporales de Meri Meri, dinosaurios, mariposas, robots, flores!<\/p>",
+              "image1": "shopify:\/\/shop_images\/09.png",
+              "image2": "shopify:\/\/shop_images\/04.png",
+              "image3": "shopify:\/\/shop_images\/06.png",
+              "link": "https:\/\/bornshop.cl\/blogs\/nuevo-post\/tattoo-party-meri-meri",
+              "boton": "Ver más"
+            }
+          },
+          "1570995877579": {
+            "type": "blog3",
+            "settings": {
+              "epigrafe": "Blog — 11 de noviembre 2019",
+              "title": "Galletas de coco con almendras.",
+              "bajada": "<p>Los snack para el colegio o el jardín, de vez en cuando tienden a hacer una interrogante que carece de creatividad. Se acaban las ideas, nos quedamos sin ganas, y optamos por enviar siempre lo mismo. Lo bueno es que, pese a todo, surgen ideas de recetas fáciles, y salen a flote preparaciones más sencillas para hacer en la casa.<\/p>",
+              "image": "shopify:\/\/shop_images\/Portada.jpg",
+              "link": "https:\/\/bornshop.cl\/blogs\/nuevo-post\/galletas-de-coco-con-avena",
+              "boton": "Ver más"
+            }
+          },
+          "1570995888877": {
+            "type": "blog2",
+            "settings": {
+              "epigrafe": "Blog — 07 de noviembre 2019",
+              "title": "¡Hola! Somos Born.",
+              "bajada": "<p>¿Quieres conocernos? ¡Nosotros también! Ya abrimos las puertas de nuestra primera <strong>Baby &amp; Kids Concept Store<\/strong> donde seleccionamos con mucha dedicación cada uno de los productos para ese pequeño tú. Todo en un solo lugar. ¡Te estamos esperando en el Piso Diseño de Parque Arauco!<\/p>",
+              "image": "shopify:\/\/shop_images\/DSC_3081_copia.jpg",
+              "link": "https:\/\/bornshop.cl\/blogs\/nuevo-post\/hola-somos-born",
+              "boton": "Ver más"
+            }
+          }
+        },
+        "block_order": [
+          "266b4f43-9cc8-49dc-b358-a62ddcfd0178",
+          "50abf056-c873-4e49-b6e8-5114142667d1",
+          "1602266350533",
+          "1601669304093",
+          "1599146069861",
+          "1596484380102",
+          "1595620216666",
+          "1594394019656",
+          "1593117154213",
+          "1592002615307",
+          "1591196279004",
+          "1590438484947",
+          "1589396356818",
+          "1588622797468",
+          "1587649836985",
+          "1586826146536",
+          "1586455646224",
+          "1586368770922",
+          "1585143470939",
+          "1581626926510",
+          "1580840725930",
+          "1580832196519",
+          "1575579659562",
+          "1570995877579",
+          "1570995888877"
+        ],
+        "settings": {}
+      },
+      "submenu": {
+        "type": "submenu",
+        "settings": {}
+      },
+      "search-show": {
+        "type": "search-show",
+        "settings": {}
+      },
+      "product-section": {
+        "type": "product-section",
+        "settings": {
+          "tiempo": "<p>Dependerá a qué comuna, ciudad y región al cual el pedido sea despachado. Podrás revisar los días que se demorará tu compra en llegar <a href=\"\/pages\/envios\" title=\"Envíos\">AQUÍ<\/a><\/p>",
+          "costo": "<p>El cálculo del costo de envío se hace sumando una tarifa base por lugar de envío más una tarifa según tamaño de paquete. Podrás revisar los costos <a href=\"\/pages\/envios\" title=\"Envíos\">AQUÍ<\/a><\/p>",
+          "retiro": "<p>Si!. Normalmente podrás retirar 24 hrs. después de tu compra en nuestra tienda ubicada en el Piso Diseño del Parque Arauco. Te esperamos!<\/p>",
+          "cambio": "<p>Por supuesto. Tendrás 30 días para cambio presentando tu boleta o comprobante de pago y, con el producto y su empaque en perfectas condiciones. Si compraste por bornshop.cl con envío a domicilio y necesitas realizar un cambio por favor escríbenos a contacto@bornshop.cl para coordinar retiro.<\/p>"
+        }
+      },
+      "product-recommendations": {
+        "type": "product-recommendations",
+        "settings": {}
+      },
+      "cart-collection": {
+        "type": "cart-collection",
+        "settings": {
+          "title": "También te puede gustar:",
+          "featured_collection": ""
+        }
+      },
+      "filter-menu-settings": {
+        "type": "filter-menu-settings",
+        "settings": {}
+      },
+      "1586277316116": {
+        "type": "datacue-recommendations",
+        "disabled": true,
+        "settings": {
+          "rec_type": ""
+        }
+      },
+      "1597696905786": {
+        "type": "text-image-2",
+        "disabled": true,
+        "settings": {
+          "epigrafe": "",
+          "title": "¿Quieres hacer seguimiento de tu pedido?",
+          "bajada": "",
+          "image": "shopify:\/\/shop_images\/Seguimientos-Born_9302c017-f7c0-4377-b13d-f5493542547d.gif",
+          "link": "shopify:\/\/pages\/seguimiento-de-pedidos",
+          "boton": "Aquí!"
+        }
+      },
+      "1598622152079": {
+        "type": "banner",
+        "disabled": true,
+        "blocks": {
+          "c632cbf9-efc2-4bb2-803f-87c7e42afe9c": {
+            "type": "image",
+            "settings": {
+              "imageES": "shopify:\/\/shop_images\/Banner_Verano_Born_desktop.jpg",
+              "link": "shopify:\/\/collections\/cat-outdoor",
+              "imageMO": "shopify:\/\/shop_images\/Banner_Verano_Born_mobile_1.jpg"
+            }
+          },
+          "b918ebbf-ab2e-40d8-98f3-c0572271a75a": {
+            "type": "image",
+            "settings": {
+              "imageES": "shopify:\/\/shop_images\/01_escritorio.jpg",
+              "link": "shopify:\/\/collections\/cat-outdoor",
+              "imageMO": "shopify:\/\/shop_images\/01_movil.jpg"
+            }
+          }
+        },
+        "block_order": [
+          "c632cbf9-efc2-4bb2-803f-87c7e42afe9c",
+          "b918ebbf-ab2e-40d8-98f3-c0572271a75a"
+        ],
+        "settings": {}
+      },
+      "1598804482809": {
+        "type": "goToShop",
+        "disabled": true,
+        "settings": {}
+      },
+      "bannerShop": {
+        "type": "bannerShop",
+        "blocks": {
+          "1601557253272": {
+            "type": "image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/01_1.png"
+            }
+          }
+        },
+        "block_order": [
+          "1601557253272"
+        ],
+        "settings": {}
+      },
+      "16037561179f8ba485": {
+        "type": "datacue-banner-customized",
+        "disabled": true,
+        "blocks": {
+          "ff12545c-88c4-4820-91cb-809750846d21": {
+            "type": "image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/Mobiliario.jpg",
+              "link": "shopify:\/\/collections\/mobiliario",
+              "orden": "1",
+              "description": "<p>Mobiliario<\/p>"
+            }
+          },
+          "20fbb309-e2c0-44f9-8341-bed0842b4f64": {
+            "type": "image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/Alimentacion.jpg",
+              "link": "shopify:\/\/collections\/alimentacion",
+              "orden": "2",
+              "description": "<p>Alimentación<\/p>"
+            }
+          },
+          "9e741cb2-1a71-4997-976d-ca65e7939795": {
+            "type": "image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/Bibs.jpg",
+              "link": "shopify:\/\/collections\/bibs",
+              "orden": "3",
+              "description": "<p>Bibs<\/p>"
+            }
+          },
+          "ba69619a-b392-4c92-bfee-7534350db33d": {
+            "type": "image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/Meri_Meri.jpg",
+              "link": "shopify:\/\/collections\/meri-meri",
+              "orden": "4",
+              "description": "<p>Meri Meri<\/p>"
+            }
+          },
+          "fd8b3343-46ba-4855-91af-f9d0e3558fea": {
+            "type": "image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/Ay-Kasa.jpg",
+              "link": "shopify:\/\/collections\/ay-kasa",
+              "orden": "5",
+              "description": "<p>Ay-Kasa<\/p>"
+            }
+          }
+        },
+        "block_order": [
+          "ff12545c-88c4-4820-91cb-809750846d21",
+          "20fbb309-e2c0-44f9-8341-bed0842b4f64",
+          "9e741cb2-1a71-4997-976d-ca65e7939795",
+          "ba69619a-b392-4c92-bfee-7534350db33d",
+          "fd8b3343-46ba-4855-91af-f9d0e3558fea"
+        ],
+        "settings": {}
+      },
+      "16038266814eb80af5": {
+        "type": "comentarios",
+        "blocks": {
+          "8442c217-18c6-4ac1-b655-287ae5661182": {
+            "type": "image",
+            "settings": {
+              "comentario": "<p>&quot;El despacho que tienen es increíble. <\/p><p>Ultra rápido. Se pasaron. <\/p><p>He comprado dos veces y todo llega al día siguiente&quot;<\/p>",
+              "nombre": "— Constanza C."
+            }
+          },
+          "337e2a46-4022-44a3-a232-c25a3860435e": {
+            "type": "image",
+            "settings": {
+              "comentario": "<p>¨Feliz! Gracias a ustedes por las cosas lindas y por el despacho que fue maravilloso! Así da gusto comprar realmente! Muy rápido¨<\/p>",
+              "nombre": "Sandia. D"
+            }
+          }
+        },
+        "block_order": [
+          "8442c217-18c6-4ac1-b655-287ae5661182",
+          "337e2a46-4022-44a3-a232-c25a3860435e"
+        ],
+        "settings": {}
+      },
+      "16038266906025d8e1": {
+        "type": "edades-blog",
+        "blocks": {
+          "0b4ada30-999b-499d-a9c3-ff4c42f9a9be": {
+            "type": "image",
+            "settings": {
+              "id": "1",
+              "imgAge1": "shopify:\/\/shop_images\/Cuadro_Celeste_9024eaa2-3cda-477e-b7e9-5eed7d08b015.png",
+              "edades": "0 a 1 años",
+              "link": "shopify:\/\/collections\/edad-0-a-1-anos",
+              "titulo": "",
+              "descripcion": ""
+            }
+          },
+          "941b2a9a-b43e-4589-bf3b-3d8a2e201f36": {
+            "type": "image",
+            "settings": {
+              "id": "2",
+              "imgAge1": "shopify:\/\/shop_images\/Cuadro_Celeste_9024eaa2-3cda-477e-b7e9-5eed7d08b015.png",
+              "edades": "1 a 2 años",
+              "link": "shopify:\/\/collections\/edad-1-a-2-anos",
+              "titulo": "",
+              "descripcion": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit<\/p>"
+            }
+          },
+          "61a47942-b75c-4147-baea-4432af44ac3a": {
+            "type": "image",
+            "settings": {
+              "id": "3",
+              "imgAge1": "shopify:\/\/shop_images\/Cuadro_Celeste_9024eaa2-3cda-477e-b7e9-5eed7d08b015.png",
+              "edades": "2 a 3 años",
+              "link": "shopify:\/\/collections\/edad-2-a-3-anos",
+              "titulo": "",
+              "descripcion": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit<\/p>"
+            }
+          },
+          "849ae7e3-4793-4adc-8808-0d7bb989e668": {
+            "type": "image",
+            "settings": {
+              "id": "4",
+              "imgAge1": "shopify:\/\/shop_images\/Cuadro_Celeste_9024eaa2-3cda-477e-b7e9-5eed7d08b015.png",
+              "edades": "3 a 4 años",
+              "link": "shopify:\/\/collections\/edad-3-a-4-anos",
+              "titulo": "",
+              "descripcion": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit<\/p>"
+            }
+          },
+          "cf7406dd-9789-484c-8748-03c11bda0ea7": {
+            "type": "image",
+            "settings": {
+              "id": "5",
+              "imgAge1": "shopify:\/\/shop_images\/Cuadro_Celeste_9024eaa2-3cda-477e-b7e9-5eed7d08b015.png",
+              "edades": "4 a 5 años",
+              "link": "shopify:\/\/collections\/edad-4-a-5-anos",
+              "titulo": "",
+              "descripcion": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit<\/p>"
+            }
+          },
+          "b8a62deb-073a-4e63-88c7-6a36bd75a848": {
+            "type": "image",
+            "settings": {
+              "id": "6",
+              "imgAge1": "shopify:\/\/shop_images\/Cuadro_Celeste_9024eaa2-3cda-477e-b7e9-5eed7d08b015.png",
+              "edades": "5+ años",
+              "link": "shopify:\/\/collections\/edad-5-anos",
+              "titulo": "",
+              "descripcion": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit<\/p>"
+            }
+          },
+          "7851aa7b-69ae-4a9c-ac43-0228472fe497": {
+            "type": "image",
+            "settings": {
+              "id": "7",
+              "edades": "",
+              "link": "https:\/\/bornshop.cl\/blogs\/nuevo-post\/nuevo-atlas-de-los-lugares-que-no-existen-resena-por-maria-jose-carmona",
+              "bannerBlog": "shopify:\/\/shop_images\/Banner_Home.jpg",
+              "titulo": "Nuevo Atlas De Los Lugares Que No Existen. Reseña por María José Carmona.",
+              "descripcion": "<p>Un libro que te lleva a soñar, imaginar, mirar, sentir y jugar; una travesía por un mundo imaginado. Lugares que no existen y que de pronto se nos hacen realidad a través de estas páginas, donde se mezcla magia, creatividad e imaginación. <\/p>"
+            }
+          }
+        },
+        "block_order": [
+          "0b4ada30-999b-499d-a9c3-ff4c42f9a9be",
+          "941b2a9a-b43e-4589-bf3b-3d8a2e201f36",
+          "61a47942-b75c-4147-baea-4432af44ac3a",
+          "849ae7e3-4793-4adc-8808-0d7bb989e668",
+          "cf7406dd-9789-484c-8748-03c11bda0ea7",
+          "b8a62deb-073a-4e63-88c7-6a36bd75a848",
+          "7851aa7b-69ae-4a9c-ac43-0228472fe497"
+        ],
+        "settings": {}
+      },
+      "1603827172421a7176": {
+        "type": "recomendaciones",
+        "settings": {}
+      },
+      "160382749942c81562": {
+        "type": "atributos-compra",
+        "blocks": {
+          "32ef19f2-385b-4130-b6f1-7ae53229043e": {
+            "type": "image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/Atributo_5.png",
+              "link": "tel: 56934285563",
+              "title": "",
+              "bajada": "<p>Asesoría de compras<br\/>+56 9 3428 5563<\/p>"
+            }
+          },
+          "f267b84e-613d-42db-8c08-73285c2c4618": {
+            "type": "image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/Atributo1_d42cfb74-d31a-4bcf-b22a-4821300dc737.png",
+              "link": "shopify:\/\/pages\/envios",
+              "title": "Title Block",
+              "bajada": "<p>Despachos a todo Chile.<\/p>"
+            }
+          },
+          "cad2bcea-39ba-4e76-9143-bda3f10a4a93": {
+            "type": "image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/Atributo2_d48d1156-954b-474d-82e2-a17028775c08.png",
+              "link": "shopify:\/\/pages\/retiros-parque-arauco",
+              "title": "Title Block",
+              "bajada": "<p>Retiros en Arauco Pick Up.<\/p>"
+            }
+          },
+          "07e6b18b-522b-4417-af13-471ca1c531b0": {
+            "type": "image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/Atributo4_7e0dae65-1747-4dab-9421-7cbb8a626392.png",
+              "link": "shopify:\/\/pages\/politica-de-cambios",
+              "title": "Title Block",
+              "bajada": "<p>Cambios y devoluciones.<\/p>"
+            }
+          }
+        },
+        "block_order": [
+          "32ef19f2-385b-4130-b6f1-7ae53229043e",
+          "f267b84e-613d-42db-8c08-73285c2c4618",
+          "cad2bcea-39ba-4e76-9143-bda3f10a4a93",
+          "07e6b18b-522b-4417-af13-471ca1c531b0"
+        ],
+        "settings": {}
+      },
+      "1603828379a99f70d5": {
+        "type": "mision",
+        "blocks": {
+          "0c72ceca-e05d-4a94-85ee-770611eb5740": {
+            "type": "image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/Foto_Tienda_ec3c6ba8-0dec-40c3-81f9-4374d1297f68.jpg",
+              "link": "shopify:\/\/pages\/nuestra-tienda",
+              "title": "Nuestra misión.",
+              "text": "<p>Te conocemos, sabemos que buscas que tus hijos vivan, disfruten y valoren las cosas simples y lindas. Que vean belleza en lo cotidiano, sin miedo a experimentar. Por eso cada uno de los artículos de nuestra tienda fue seleccionado pensando en ellos y también en ese pequeño tú que es feliz viéndolos crecer. Diseño para padres, creado para niños.<\/p>"
+            }
+          }
+        },
+        "block_order": [
+          "0c72ceca-e05d-4a94-85ee-770611eb5740"
+        ],
+        "settings": {}
+      },
+      "collection-template-boost-pfs-filter": {
+        "type": "collection-template-boost-pfs-filter",
+        "settings": {
+          "show_collection_image": true,
+          "collection_image_text_color": "rgba(0,0,0,0)",
+          "products_per_page": 50,
+          "products_per_row": 3,
+          "products_per_row_mobile": 2,
+          "text_alignment": "left",
+          "show_vendor": true,
+          "show_price": true,
+          "active_image_swap": true,
+          "show_sorting": true,
+          "show_product_review": true,
+          "show_sold_out_label": true,
+          "soldout_label": "Agotado",
+          "show_sale_label": true,
+          "sale_label": "SALE",
+          "from": "Desde",
+          "show_lable_by_tag": false,
+          "display_item_swatch": true,
+          "swatch_color_display_type": "swatch_color_display_type_color",
+          "swatch_color_event_change_image": "hover",
+          "swatches_color_shape": "circle",
+          "equal_height": "false",
+          "ratio_width_height_other": "",
+          "equal_height_crop_image_position": "center"
+        }
+      },
+      "instagram": {
+        "type": "instagram",
+        "settings": {
+          "title1": "RECIBE NUESTRO NEWSLETTER",
+          "mailchimp": "#",
+          "title2": "Instagram",
+          "inlink": "https:\/\/www.instagram.com\/bornshop.cl\/",
+          "falink": "https:\/\/www.facebook.com\/bornshop.cl",
+          "inuser": "@bornshop.cl"
+        }
+      },
+      "banner": {
+        "type": "banner",
+        "blocks": {
+          "615c8788-0bf7-43ab-8d00-b6f0f2971d55": {
+            "type": "image",
+            "settings": {
+              "imageES": "shopify:\/\/shop_images\/Banner_Principal_Verano_Born_1_fd11f7fb-af17-45b7-a04e-d2a616e13af5.jpg",
+              "link": "shopify:\/\/collections\/bibs",
+              "imageMO": "shopify:\/\/shop_images\/Banner_Mobil_Verano_Born_1_a3ee5e76-3235-43ac-b0e5-60f9a4342101.jpg"
+            }
+          },
+          "c9dcead5-3344-49be-86ea-7192f4b90cde": {
+            "type": "image",
+            "settings": {
+              "imageES": "shopify:\/\/shop_images\/Banner_Principal_Verano_Born_2_52bdd249-62bd-4969-b1d8-39f1d5b93cc4.jpg",
+              "link": "shopify:\/\/collections\/back-to-school",
+              "imageMO": "shopify:\/\/shop_images\/Banner_Mobil_Verano_Born_2.jpg"
+            }
+          }
+        },
+        "block_order": [
+          "615c8788-0bf7-43ab-8d00-b6f0f2971d55",
+          "c9dcead5-3344-49be-86ea-7192f4b90cde"
+        ],
+        "settings": {}
+      },
+      "datacue-banners": {
+        "type": "datacue-banners",
+        "settings": {}
+      }
+    },
+    "content_for_index": [
+      "1570574956143",
+      "1598622152079",
+      "16037561179f8ba485",
+      "16038266814eb80af5",
+      "16038266906025d8e1",
+      "1603827172421a7176",
+      "160382749942c81562",
+      "1598804482809",
+      "1597696905786",
+      "1570626823761",
+      "1570628318751",
+      "1603828379a99f70d5",
+      "1586277316116"
+    ]
+  },
+  "presets": {
+    "Naked": {
+      "customer_layout": "theme",
+      "example_option": "option"
+    }
+  }
+}

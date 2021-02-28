@@ -1,0 +1,36 @@
+.datacue-rec-section {
+  font-family: 'Gilroy', sans-serif;
+}
+
+@media (max-width: 830px) {
+  .datacue-rec-section {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+}
+
+.datacue-rec-section .datacue-rec-title {
+  margin-bottom: 1rem;
+  border-top: 2px solid rgba(0,0,0,0.85);
+  padding-top: 10px;
+}
+
+.datacue-rec-section .datacue-rec-grid {
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 20px;
+}
+
+@media (min-width: 831px) {
+  .datacue-rec-section .datacue-rec-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.datacue-rec-section .datacue-rec-grid .datacue-rec {
+  border-bottom: 1px solid rgba(0,0,0,0.5);
+}
+
+.datacue-rec-section .money {
+  font-weight: inherit;
+  font-size: inherit;
+}

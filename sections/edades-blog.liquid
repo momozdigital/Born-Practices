@@ -1,0 +1,124 @@
+{% if section.blocks.size > 0 %}
+
+    <div class="edades-blog">
+        
+        {% for block in section.blocks %}
+			
+      		{% if block.settings.id == '1' %}
+      		<div class="vitrineo-edades">
+                    <h1 class="heading-11">Vitrinea por edad.</h1>
+                    <div class="div-block-168">
+      		{% endif %}
+            {% if block.settings.id != '7' %}    
+
+                      <div class="rango-edad">
+                            <a href={{ block.settings.link }} >
+                            	{{ block.settings.imgAge1 | img_url: 'master' | img_tag: block.settings.description }}
+                        	</a>  
+                            <p class="paragraph-14">{{ block.settings.edades }}</p>
+                       </div>
+                      
+
+            {% endif %}
+      		{% if block.settings.id == '6' %}
+      				</div>
+      		</div>
+      		{% endif %}
+            {% if block.settings.id == '7' %} 
+
+                <div class="blog">
+                    <h1 class="heading-11">Blog Born.</h1>
+                    <div class="blog-foto-texto">
+                        <div class="blog-foto">
+                           <a href={{ block.settings.link }} >
+                            {{ block.settings.bannerBlog | img_url: 'master' | img_tag: block.settings.description }}
+                          </a> 
+                        </div>
+                        <div class="txt-descr-marca">
+                            <h1 class="heading-12">{{ block.settings.titulo }}</h1>
+                            <p class="textos-vollkorn">
+                                {{ block.settings.descripcion }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            {% endif %}
+                
+        {% endfor %}
+
+    </div>
+
+
+{% endif %}
+
+
+{% schema %}
+
+  {
+    "name": "edadesBlog",
+    "max_blocks": 7,
+    "blocks": [
+      {
+        "type": "image",
+        "name": "Bloque",
+        "settings": [
+          {
+            "type": "text",
+            "id": "id",
+            "label": "Id"
+          },
+		  {
+            "type": "image_picker",
+            "id": "imgAge1",
+            "label": "ImagenEdad1"
+          },
+		  {
+            "type": "image_picker",
+            "id": "imgAge2",
+            "label": "ImagenEdad2"
+          },
+		  {
+            "type": "text",
+            "id": "edades",
+            "label": "Edades"
+          },	
+          {
+            "type": "url",
+            "id": "link",
+            "label": "Link URL"
+          },
+		  {
+            "type": "image_picker",
+            "id": "bannerBlog",
+            "label": "Banner Blog"
+          },
+          {
+            "type": "text",
+            "id": "titulo",
+            "label": "Título Blog"
+          },
+          {
+            "type": "richtext",
+            "id": "descripcion",
+            "label": "Texto Blog",
+            "default": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>"
+          }
+        ]
+      }
+	  
+    ],
+    "presets": [
+      {
+        "name": "edadesBlog",
+          "category": "Image"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

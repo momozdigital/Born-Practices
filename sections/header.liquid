@@ -1,0 +1,278 @@
+<header>
+  
+  <div class="row1">
+      
+    <a class="solo-mobile show-menu"><i></i></a>
+  
+        <div class="logo">
+            <a href="/" itemprop="url">
+                <img class="logo-desktop" src="{{ section.settings.logo | img_url: '600x' }}" alt="{{ shop.name }}" itemprop="logo">
+            </a>
+        </div>
+    
+        <div class="icons">
+        <div class="search-form">
+          <form action="/search" method="get" class="right" role="search">
+            
+            <input name="q" type="search" id="search-field" class="search-field" placeholder="Buscar producto" value="{{ search.terms | escape }}" />
+            <!--<input type="submit" id="search-submit" value="" />-->
+            <input type="image" src="https://cdn.shopify.com/s/files/1/0262/7046/6134/t/15/assets/Buscador.png?v=1606746019" alt="Submit"  id="search-submit" value="">
+            
+            <a href="/collections/blog" class="link-2 link-blog">BLOG</a>  
+            
+            
+          </form>
+            
+        </div>
+      	<ul class="new-icons" style="">
+          
+            <li>
+              <a class="user" href="/account">
+                <i class=""></i>
+              </a>
+            </li>
+            <li style="margin-left: 10px;">
+              <a class="cart">
+                <i class="dt-cart"></i>
+                <span class="count">1</span>
+              </a>
+            </li>
+          
+         </ul>
+      
+    </div>
+  </div>
+  
+  
+  
+  <div class="black-search"></div>
+  
+
+  
+   
+</header>
+
+
+
+<div id="menuShop">  
+  <nav>  
+
+    {% include 'site-nav' with linklists[section.settings.nav_home] %}    
+
+  </nav> 
+</div>
+<div id="lineaMenu" style="margin: auto;max-width: 1200px; 
+            border-top: 1px solid #9E9E9E;
+            position: inherit;
+            top: -10px;">
+</div>
+
+
+<div id="mobmenu" class="solo-mobile">
+  <a class="icon"></a>
+  
+  	<form action="/search" method="get" class="right" role="search">
+            
+    	<input name="q" type="search" id="search-field" placeholder="Buscar producto" value="{{ search.terms | escape }}" 
+           style="margin-left: 20px;margin-right: 0px;5px 0px 5px 15px !important;"/>
+    	<input type="image" src="https://cdn.shopify.com/s/files/1/0262/7046/6134/t/15/assets/Buscador.png?v=1606746019" alt="Submit"  id="search-submit" value="">
+	
+   	</form>
+  
+
+  		{% include 'site-nav' with linklists[section.settings.nav_menu] %}
+  
+  
+
+  
+  	<!-- Reemplazar el código acá -->
+
+    <ul class="footerMobMenu">
+	  
+      <li class="site-nav--activ" style="border-top: 2px solid black;">
+          <a data-href="/collections/blog" href="/collections/blog" aria-label="MOMOZ 1" data-no-instant="" onclick="mmGoToPage(this, event); return false;" class="">   
+           BLOG
+          </a>
+      </li>
+      
+      <li class="site-nav--activ">
+          <a data-href="/pages/tienda-parque-arauco_piso-diseno" href="/pages/tienda-parque-arauco_piso-diseno" aria-label="MOMOZ 1" data-no-instant="" onclick="mmGoToPage(this, event); return false;" class="">   
+           NUESTRA TIENDA
+          </a>
+      </li>
+
+      <li class="site-nav--activ">
+          <a data-href="/pages/envios" href="/pages/envios" data-no-instant="" onclick="mmGoToPage(this, event); return false;" class="">   
+            ENVIOS | RETIROS EN TIENDA
+          </a>
+      </li>
+
+      <li class="site-nav--activ">
+          <a data-href="/pages/politica-de-cambios" href="/pages/politica-de-cambios" data-no-instant="" onclick="mmGoToPage(this, event); return false;" class="">   
+            POLÍTICA DE CAMBIOS
+          </a>
+      </li>      
+      
+      
+      <li class="site-nav--activ">
+          <a data-href="/pages/terminos-y-condiciones" href="/pages/terminos-y-condiciones" data-no-instant="" onclick="mmGoToPage(this, event); return false;" class="">   
+            TÉRMINOS Y CONDICIONES
+          </a>
+      </li>
+      
+      <li class="site-nav--activ">
+          <a data-href="/pages/politicas-de-privacidad" href="/pages/politicas-de-privacidad" data-no-instant="" onclick="mmGoToPage(this, event); return false;" class="">   
+            POLÍTICA DE PRIVACIDAD
+          </a>
+      </li>
+
+   </ul>
+  
+  	<!--
+      <form action="/search" method="get" class="" role="search">
+          <input name="q" type="search" id="search-field" placeholder="Buscar" value="{{ search.terms | escape }}" />
+          <button type="submit" class="btn btn-success"> </button>
+      </form>
+	-->
+  
+</div>
+
+<style>
+  
+  .horizontal-mega-menu ul.mm-submenu.simple{
+  	display: table-row;
+  }
+  .horizontal-mega-menu ul.mm-submenu.simple > li{
+    float: none !important;
+  	display: inline-block !important;
+  }
+  .horizontal-mega-menu ul.mm-submenu a {
+     font-size: 11px !important;
+    font-family: 'Gilroy' !important;
+  }
+  .horizontal-mega-menu ul.mm-submenu.tree li {
+    padding: 0px 0px 0px 0px !important;
+    text-align: left !important;
+  }
+  .horizontal-mega-menu ul.mm-submenu.simple > li .mm-list-name {
+    padding: 5px 0px 0px 0px!important;
+    margin-bottom: 10px !important;
+    font-size: 10px !important;
+  }
+  
+  .horizontal-mega-menu ul.mm-submenu.simple > li .mm-list-name > span{
+    border-bottom: 1px solid grey !important;
+    padding-left: 0px !important;
+    padding-bottom: 5px !important;
+  }
+  
+  .horizontal-mega-menu ul.mm-submenu.simple > li .mega-menu-item-container {
+    padding: 0px 0px !important;
+/*     max-width: 140px !important; */
+    min-width: 140px !important;
+  }
+  
+  .horizontal-mega-menu ul.mm-submenu.simple[columns="6"] > li {
+    width: 16% !important;
+  }
+  
+ 
+   #shopify-section-header .menu.horizontal-mega-menu li.buddha-menu-item:hover > .mm-submenu {
+    top: calc(110% + 0.1px) !important;
+  }
+  #shopify-section-header .menu.horizontal-mega-menu li.buddha-menu-item:hover {
+    border-bottom: 2px solid #d0e6e7 !important;
+  }
+  
+/*   #menuShop nav .menu .buddha-menu-item{
+    display: table-cell !important;    
+  }  Modificado el 2/12/2020 Wilmer */
+  .horizontal-mega-menu ul.mm-submenu {
+      background: #f1eee6 !important;
+    	/*background: #d87396 !important;*/
+  } 
+  .horizontal-mega-menu ul.mm-submenu.tree {
+      /*background: #f1eee6 !important;*/
+    background: #f1eee6 !important;
+  }
+  .horizontal-mega-menu ul.mm-submenu.mega-menu-item-container {
+      /*background: #f7dd8f !important;*/
+    background: #f1eee6 !important;
+  }
+ .horizontal-mega-menu ul.mm-submenu.link-list{
+      /*background: #699cc4 !important;*/
+   background: #f1eee6 !important;
+  }
+  
+  
+  .horizontal-mega-menu ul.mm-submenu, .horizontal-mega-menu>li>ul.mm-submenu.tabbed>li>ul.mm-submenu li, 
+  .horizontal-mega-menu li.buddha-menu-item:hover ul.mm-submenu.simple li:hover, 
+  .horizontal-mega-menu li.buddha-menu-item.mega-hover ul.mm-submenu.simple li:hover,
+  .horizontal-mega-menu ul.mm-submenu.tree li:hover
+  {
+  
+    	background: #f1eee6 !important;
+  
+  }
+
+
+</style>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo",
+      "info": "450 x 200px recommended"
+    },
+    {
+      "type": "header",
+      "content": "Main menu"
+    },
+    {
+      "type": "link_list",
+      "id": "nav_menu",
+      "label": "Menu",
+      "default": "main-menu"
+    },
+    {
+      "type": "link_list",
+      "id": "nav_home",
+      "label": "Menu Home",
+      "default": "main-menu"
+    },
+    {
+      "type": "header",
+      "content": "Social Networks"
+    },
+    {
+      "type": "text",
+      "id": "facebook",
+      "label": "Facebook URL",
+      "default": "#"
+    },
+    {
+      "type": "text",
+      "id": "instagram",
+      "label": "Instagram URL",
+      "default": "#"
+    },
+    {
+      "type": "text",
+      "id": "pinterest",
+      "label": "Pinterest URL",
+      "default": "#"
+    },
+    {
+      "type": "text",
+      "id": "twitter",
+      "label": "Twitter URL",
+      "default": "#"
+    }
+  ]
+}
+{% endschema %}
+

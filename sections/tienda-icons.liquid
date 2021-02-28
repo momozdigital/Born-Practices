@@ -1,0 +1,45 @@
+{% if section.blocks.size > 0 %}
+<div class="tiendaicons grid">
+
+  {% for block in section.blocks %}
+  <div class="item">
+    <a href="{{ block.settings.link }}" class="grid">
+      {{ block.settings.image | img_url: 'master' | img_tag: block.settings.image.alt }}
+      <h5>{{ block.settings.title }}</h5>
+    </a>
+  </div>
+  {% endfor %}
+
+</div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Iconos",
+  "max_blocks": 4,
+  "blocks": [
+    {
+      "type": "image",
+      "name": "Slide",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link URL"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Title Block"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

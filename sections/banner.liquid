@@ -1,0 +1,123 @@
+<div class="banner">
+  
+	{% if section.blocks.size > 0 %}
+  
+  		{% for block in section.blocks %}  			
+
+            <a href="{{ block.settings.link }}" class="bannerImage">
+              <img class="mySlides bannerImage" src="{{ block.settings.imageES | img_url: 'master' }}" alt="banner-001" />
+            </a>
+
+            <a href="{{ block.settings.link }}" class="bannerImageMobile">
+              <img class="mySlidesMobile bannerImageMobile" src="{{ block.settings.imageMO | img_url: 'master' }}" alt="banner-001" />
+            </a>
+  
+  		{% endfor %}
+  
+  		<a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+		<a class="next" onclick="plusSlides(1)">&#10095;</a>
+	{% endif %}
+		
+</div>
+
+<script>
+  	
+    var myIndex = 0;
+    carousel();
+  
+    console.log("ANCHO DE PANTALLA: "+window.screen.availWidth);
+  	
+  
+  function carousel() {
+    var i;
+    
+    if(window.screen.availWidth<768){
+      console.log("ES MOVIL");
+      var x = document.getElementsByClassName("mySlidesMobile");
+		
+    }
+    else{
+      console.log("ES ESCRITORIO");
+      var x = document.getElementsByClassName("mySlides");
+    }
+    
+    for (i = 0; i < x.length; i++) {
+      x[i].style.display = "none";  
+    }
+    
+    myIndex++;
+    if (myIndex > x.length) {myIndex = 1}    
+    x[myIndex-1].style.display = "block";  
+    setTimeout(function() {
+    	carousel();
+    }, 4000); // Change image every 4 seconds
+    
+  }  
+  
+  
+</script>
+<script>
+  
+  var slideIndex = 1;
+  
+  function plusSlides(n) {
+ 	 showSlides(slideIndex += n);
+  }
+  
+  function showSlides(n) {
+    var i;
+    var slides = document.getElementsByClassName("mySlides"); 
+    if(window.screen.availWidth<768){
+
+      slides = document.getElementsByClassName("mySlidesMobile");
+
+    }  
+
+    if (n > slides.length) {slideIndex = 1}    
+    if (n < 1) {slideIndex = slides.length}
+    for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";  
+    }  
+    slides[slideIndex-1].style.display = "block";  
+  }
+</script>
+
+{% schema %}
+
+{
+  "name": "Banner",
+  "max_blocks": 4,
+  "blocks": [
+      {
+		
+        "type": "image",
+        "name": "Slide",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "imageES",
+            "label": "Imagen Escritorio"
+          },
+          {
+            "type": "url",
+            "id": "link",
+            "label": "Link "
+          },
+          {
+            "type": "image_picker",
+            "id": "imageMO",
+            "label": "Imagen Móvil"
+          }
+        ]
+
+      }
+	],
+  "presets": [
+    {
+      "name": "Banner",
+      "category": "Image"
+    }
+  ]
+}
+
+{% endschema %}

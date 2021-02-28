@@ -1,0 +1,81 @@
+<div class="footer-escritorio">
+    <div class="div-block-194">
+        <div id="w-node-22a1c3f8c9fa-c3f8c9f8" class="div-block-196">
+           <div class="links-footer">          
+              {% for link in linklists[section.settings.menu1].links %}
+                  <a href={{ link.url }} class="link-4">
+                    {{ link.title }}
+                  </a>
+              {% endfor %}
+          	</div>
+        </div>
+        <div class="div-block-197">
+            <div class="paragraph-22">
+                {{ section.settings.text1 }}
+            </div>
+            <div class="paragraph-22">
+                {{ section.settings.text2 }}
+            </div>
+        </div>
+    </div>
+    <div class="div-block-198"><p class="paragraph-23">Todos los derechos reservados</p></div>
+</div>
+
+
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Social Networks"
+    },
+    {
+      "type": "text",
+      "id": "blog",
+      "label": "Blog URL",
+      "default": "#"
+    },
+    {
+      "type": "text",
+      "id": "facebook",
+      "label": "Facebook URL",
+      "default": "#"
+    },
+    {
+      "type": "text",
+      "id": "instagram",
+      "label": "Instagram URL",
+      "default": "#"
+    },
+	{
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "header",
+      "content": "Footer"
+    },
+    {
+      "type": "link_list",
+      "id": "menu1",
+      "label": "Menu",
+      "default": "main-menu"
+    },
+    {
+      "type": "richtext",
+      "id": "text1",
+      "label": "Text 1",
+	  "default": "<p>Lorem ipsum dolor sit</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "text2",
+      "label": "Text 2",
+	  "default": "<p>Lorem ipsum dolor sit</p>"
+    }
+  ]
+}
+{% endschema %}

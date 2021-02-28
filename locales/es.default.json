@@ -1,0 +1,26 @@
+{
+  "shopify": {
+    "checkout": {
+      "thank_you": {
+        "thank_you_title": "Una vez vez que recibas la boleta por correo electrónico, tu pedido comenzará a ser preparado.",
+        "thank_you_confirmed_order_with_email": "Recibirás un correo electrónico con un link para que puedas hacer seguimiento a tu pedido. Si elegiste retiro en tienda, desde mañana mismo lo podrás retirar"
+      },
+      "review": {
+        "checkout_as_guest": "Finalizar compra como invitado",
+        "title": "Revisar",
+        "review_title": "hahaha"
+      },
+      "contact": {
+        "address2_label": "Ciu",
+        "city_label": "Comuna",
+        "address1_label": "Calle y número",
+        "optional_address2_label": "(Información opcional)",
+        "company_label": "Rut",
+        "optional_company_label": "Rut"
+      },
+      "stock": {
+        "sold_out_label": "Agotado"
+      }
+    }
+  }
+}

@@ -1,0 +1,92 @@
+{{ 'ajaxinate.min.js' | asset_url | script_tag }}
+{{ 'sticky-kit.min.js' | asset_url | script_tag }}
+
+<div class="productos-destacados">
+    <h1 class="heading-11">Productos destacados.</h1>
+    <div class="prod-destacados-home">
+
+      <div class="featured-collection grid">
+
+
+        {% paginate collections.sale.products by 4 %}
+
+          <ul class="grid" id="lista-Recomendaciones" style="">
+            {% for product in collections.sale.products %}
+
+                {% include 'product-item-custom' %}
+
+            {% endfor %}
+          </ul>      
+
+        {% endpaginate %}
+
+
+      </div>
+        
+    </div>
+</div>
+
+
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  var endlessScroll = new Ajaxinate({
+    container: '#AjaxinateLoop',
+    pagination: '#AjaxinatePagination',
+    method: 'click',
+    loadingText: 'Cargando...',
+    callback: function(){
+      
+      $('.featured-collection ul .item.sold-out').remove();
+      
+      var botonTop = $('.featured-collection .boton-ajax').offset.top;
+      var offset = $('.featured-collection .boton-ajax').offset();
+      
+      console.log(offset.top);
+      
+      $([document.documentElement, document.body]).animate({
+        scrollTop: offset.top - 2800
+      }, 2000);
+      
+    }
+  });
+
+});  
+  
+$("aside .inner").stick_in_parent();  
+  
+</script>
+
+{% schema %}
+
+  {
+    "name": "Recomendaciones",
+    "max_blocks": 1,
+    "blocks": [
+      {
+        "type": "image",
+        "name": "banner",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Recomendaciones",
+          "category": "Text"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

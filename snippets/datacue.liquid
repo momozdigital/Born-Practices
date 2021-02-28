@@ -1,0 +1,147 @@
+<!-- datacue-version:667c4d144d2f4704 -->
+<link rel="stylesheet" href="https://cdn.datacue.co/css/datacue-storefront.css">
+<script>
+  (function() {
+    window.datacueConfig = {
+      api_key: '{{ shop.permanent_domain }}',
+      page_type: '{{ template.name }}',
+      user_id: {% if customer %}{{ customer.id }}{% else %}null{% endif %},
+      product_id: {% if product %}'{{ product.id }}'{% else %}null{% endif %},
+      variant_id: {% if product %}'{{ product.selected_or_first_available_variant.id }}'{% else %}null{% endif %},
+      category_id: {% if collection %}'{{ collection.handle }}'{% else %}null{% endif %},
+      term: {% if search.performed %}{{ search.terms | json }}{% else %}null{% endif %},
+      options: { _staging: 'production' !== 'production' },
+      add_to_cart: function(productId, variantId) {
+        xhr('post', '/cart/add.js', { quantity: 1, id: variantId });
+      },
+      money_format: JSON.parse({% if shop.money_format %}'{{ shop.money_format | json }}'{% else %}null{% endif %}),
+      money_with_currency_format: JSON.parse({% if shop.money_with_currency_format %}'{{ shop.money_with_currency_format | json }}'{% else %}null{% endif %}),
+      product_update: {% if product %}{
+        name: {{ product.title | json }},
+        brand: {{ product.vendor | json }},
+        price: ({{ product.price }} / 100).toString(),
+        full_price: {% if product.selected_or_first_available_variant.compare_at_price %}({{
+          product.selected_or_first_available_variant.compare_at_price
+        }} / 100).toString(){% else %}null{% endif %},
+        photo_url: {{ product.featured_image | json }},
+        available: {{ product.available }},
+        stock: {{ product.selected_or_first_available_variant.inventory_quantity }},
+        {% assign collection_handles = product.collections | map: 'handle' | sort %}
+        category_ids: {{ collection_handles | json }}
+      }{% else %}null{% endif %},
+      category_update: {% if collection %}{
+        name: {{ collection.title | json }},
+        link: {{ collection.url | json }}
+      }{% else %}null{% endif %}
+    };
+
+    var s = document.createElement('style');
+    s.innerHTML = ''
+      + '.datacue-overlay-enabled{visibility:hidden;}'
+      + '.datacue-overlay-enabled.datacue-visible{visibility:visible;}';
+    document.getElementsByTagName('head')[0].appendChild(s);
+
+    var localStorageAvailable = (function() {
+      try {
+        var v = '__datacue_storage_test';
+        window.localStorage.setItem(v, v);
+        window.localStorage.removeItem(v);
+        return true;
+      } catch (e) {
+        return false;
+      }
+    }());
+
+    function xhr(method, url, data, success) {
+      if (!success && typeof data === 'function') {
+        success = data;
+        data = null;
+      }
+
+      if (data) {
+        if (method.toLowerCase() === 'get') {
+          // very simple query string serialization, flat objects only!
+          data = Object.keys(data).map(function(key) {
+            return encodeURIComponent(key) + '=' + (data[key] ? encodeURIComponent(data[key]) : '');
+          }).join('&');
+
+          url += '?' + data;
+          data = undefined;
+        } else {
+          data = JSON.stringify(data);
+        }
+      }
+
+      var req = new XMLHttpRequest();
+      req.open(method, url);
+
+      if (data) {
+        req.setRequestHeader('Content-Type', 'application/json');
+      }
+
+      if (typeof success === 'function') {
+        req.onload = function() {
+          if (req.status >= 200 && req.status < 400) {
+            success(req.responseText);
+          }
+        };
+      }
+
+      req.send(data);
+    }
+
+    function trackCart() {
+      var shop = window.location.protocol + '//' + window.location.host + '/';
+      var proxy = shop + 'a/datacue';
+
+      xhr('get', shop + 'cart.js', function(res) {
+        var cart = JSON.parse(res);
+
+        var sendEvent = true;
+        if (localStorageAvailable) {
+          var key = 'datacue-shopify-cart-checksum';
+          var checksum = cart.token + ';' + (cart.items || []).map(function(item) {
+            return item.variant_id + ':' + item.quantity;
+          }).sort().join(';');
+
+          var prev = window.localStorage.getItem(key);
+          if (checksum !== prev) {
+            window.localStorage.setItem(key, checksum);
+          } else {
+            sendEvent = false;
+          }
+        }
+
+        if (sendEvent) {
+          xhr('get', proxy, {
+            cart_token: cart.token,
+            user_id: window.datacue.getUser().user_id,
+            anonymous_id: window.datacue.getUser().anonymous_id
+          });
+        }
+      });
+    }
+
+    window._datacuePostInitHook = trackCart;
+
+    document.addEventListener('DOMContentLoaded', function() {
+      var banners = document.querySelector('.datacue-overlay-enabled');
+      if (!banners) {
+        return;
+      }
+
+      banners.className += ' datacue-visible datacue-overlay-active';
+
+      window.datacueMeta.overlayTimer = setTimeout(function() {
+        if (banners.className.match('datacue-overlay-active') && !banners.className.match('datacue-overlay-fading')) {
+          banners.className += ' datacue-overlay-fading';
+          setTimeout(function() {
+            banners.className = banners.className.replace(/\s?datacue-overlay-(active|fading)/g, '');
+          }, 500);
+        }
+      }, 5000);
+    });
+  }());
+</script>
+<script src="https://cdn.datacue.co/js/datacue.js"></script>
+<script src="https://cdn.datacue.co/js/datacue-storefront.js"></script>

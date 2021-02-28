@@ -1,0 +1,86 @@
+<div class="comments">
+    <div class="comentarios">
+      
+        <div class="div-block-200">
+          	
+          {% if section.blocks.size > 0 %}
+  
+  			{% for block in section.blocks %}
+          
+              <div class="comentario-1">
+                  <h1 class="texto-comentarios">
+                	{{ block.settings.comentario }}
+                  </h1>
+                  <p class="paragraph-25">
+                    {{ block.settings.nombre }}
+                  </p>
+              </div>
+          
+          	{% endfor %}
+  
+		  {% endif %}
+          
+        </div>
+      
+      
+    </div>
+</div>
+
+<script>
+  
+    var slideIndex = 0;
+    carouselComentarios();
+  	
+
+    function carouselComentarios() {
+      var i;
+      var x = document.getElementsByClassName("comentario-1");
+      for (i = 0; i < x.length; i++) {
+        x[i].style.display = "none";
+      }
+      slideIndex++;
+      if (slideIndex > x.length) {slideIndex = 1}
+      x[slideIndex-1].style.display = "block";
+      setTimeout(carouselComentarios, 6000); 
+    }
+  
+  
+  
+</script>
+
+{% schema %}
+{
+  "name": "Comentarios",
+  "max_blocks": 4,
+  "blocks": [
+    {
+      "type": "image",
+      "name": "Slide",
+      "settings": [
+        
+        {
+          "type": "richtext",
+          "id": "comentario",
+          "label": "Comentario",
+		  "default": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>"
+        }
+		,
+		{
+          "type": "text",
+          "id": "nombre",
+          "label": "Nombre"
+        }
+
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Comentarios",
+      "category": "Text"
+    }
+  ]
+}
+{% endschema %}
+{% stylesheet %}
+{% endstylesheet %}

@@ -1,0 +1,134 @@
+{% if section.blocks.size > 0 %}
+
+<div class="banners-data-cue">
+  
+	{% for block in section.blocks %}
+
+  		
+   
+  		{% if block.settings.orden == '1' %}	
+  		
+  		<div class="banners-dc-2">
+          
+  			<div class="dc-2">
+              <a href={{ block.settings.link }} class="link-block-6 w-inline-block">
+                {{ block.settings.image | img_url: 'master' | img_tag: block.settings.description }}
+                <div class="description-dc" style="">
+                  <spam style="">
+                    <b>{{ block.settings.description }}</b>
+                  </spam>
+                </div>
+              </a>
+            </div>
+          
+  		{% endif %}
+        {% if block.settings.orden == '2' %}
+          <div class="dc-2">
+            <a href={{ block.settings.link }} class="link-block-6 w-inline-block">
+              {{ block.settings.image | img_url: 'master' | img_tag: block.settings.description }}
+              <div class="description-dc" style="">
+                  <spam style="">
+                    <b>{{ block.settings.description }}</b>
+                  </spam>
+               </div>
+            </a>
+          </div>
+          
+  		</div>
+  
+  		{% endif %}      
+  		{% if block.settings.orden == '3' %}
+  		<div class="banners-dc-1">
+            <div class="dc-1">
+                <a href={{ block.settings.link }} class="link-block-6 w-inline-block">
+                {{ block.settings.image | img_url: 'master' | img_tag: block.settings.description }}
+                  <div class="description-dc" style="">
+                  <spam style="">
+                    <b>{{ block.settings.description }}</b>
+                  </spam>
+                </div>
+              </a>
+            </div>	
+  		{% endif %} 
+  		{% if block.settings.orden == '4' %}
+  			<div class="dc-1">
+               <a href={{ block.settings.link }} class="link-block-6 w-inline-block">
+                {{ block.settings.image | img_url: 'master' | img_tag: block.settings.description }}
+                 <div class="description-dc" style="">
+                  <spam style="">
+                    <b>{{ block.settings.description }}</b>
+                  </spam>
+                </div>
+              </a>
+            </div>
+  		{% endif %}  
+  		{% if block.settings.orden == '5' %}
+  			<div class="dc-1">
+               <a href={{ block.settings.link }} class="link-block-6 w-inline-block">
+                {{ block.settings.image | img_url: 'master' | img_tag: block.settings.description }}
+                 <div class="description-dc" style="">
+                  <spam style="">
+                    <b>{{ block.settings.description }}</b>
+                  </spam>
+                </div>
+              </a>
+            </div>
+        </div>
+  		{% endif %} 
+  
+  	{% endfor %}
+  
+</div>
+
+{% endif %}
+
+
+{% schema %}
+
+  {
+    "name": "DataCueBannersCustomized",
+    "max_blocks": 5,
+    "blocks": [
+      {
+        "type": "image",
+        "name": "imagen",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          },
+          {
+            "type": "url",
+            "id": "link",
+            "label": "Link URL"
+          },
+          {
+            "type": "text",
+            "id": "orden",
+            "label": "Orden"
+          },
+          {
+            "type": "richtext",
+            "id": "description",
+            "label": "Text",
+            "default": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>"
+          }
+        ]
+      }
+	  
+    ],
+    "presets": [
+      {
+        "name": "DataCueBannersCustomized",
+          "category": "Image"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

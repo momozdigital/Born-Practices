@@ -1,0 +1,72 @@
+<div class="banners2 grid section-{{ section.id }}">
+  <div class="item">
+  	<a href="{{ section.settings.link1 }}" class="item" style="background-image: url({{ section.settings.image1 | img_url: "master" }});"></a>
+  </div>
+  <div class="item grid item-child">
+    <div class="item">
+      <a href="{{ section.settings.link2 }}" class="item" style="background-image: url({{ section.settings.image2 | img_url: "master" }});"></a>
+    </div>
+    <div class="item">
+      <a href="{{ section.settings.link3 }}" class="item" style="background-image: url({{ section.settings.image3 | img_url: "master" }});"></a>
+    </div>
+  </div>
+</div>
+
+<a href="{{ section.settings.link4 }}" class="boton banners2-boton">{{ section.settings.btn-title }}</a>
+
+
+{% schema %}
+{
+  "name": "Banners 2",
+  "class": "index-section",
+  "settings": [
+	{
+      "type": "image_picker",
+      "id": "image1",
+      "label": "Image 1"
+    },
+    {
+      "type": "url",
+      "id": "link1",
+      "label": "Link URL 1"
+    },
+	{
+      "type": "image_picker",
+      "id": "image2",
+      "label": "Image 2"
+    },
+    {
+      "type": "url",
+      "id": "link2",
+      "label": "Link URL 2"
+    },
+	{
+      "type": "image_picker",
+      "id": "image3",
+      "label": "Image 3"
+    },
+    {
+      "type": "url",
+      "id": "link3",
+      "label": "Link URL 3"
+    },
+	{
+      "type": "text",
+      "id": "btn-title",
+      "label": "Texto Botón",
+      "default": "Ir a la tienda"
+    },
+{
+      "type": "url",
+      "id": "link4",
+      "label": "Enlace Botón"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Banners 2",
+      "category": "Image"
+    }
+  ]
+}
+{% endschema %}

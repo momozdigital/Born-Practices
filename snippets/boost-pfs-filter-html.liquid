@@ -1,0 +1,292 @@
+{%- capture bc_layout -%}
+{%- case layout -%}
+{%- when 'productGridItemHtml' -%}
+
+<div class="boost-pfs-filter-product-item boost-pfs-filter-product-item-grid 
+            [[gridWidthClass]][[soldOutClass]][[saleClass]] [[itemActiveSwapClass]]">
+    
+    
+  <div class="boost-pfs-filter-product-item-inner" datacustom=[[collection.title]]>
+        
+        
+      
+        <div class="boost-pfs-filter-product-item-image">
+            [[itemImages]]
+        </div>
+      
+        <div class="boost-pfs-filter-product-item-label">
+          [[itemLabels]]
+          [[itemTagLabels]]          
+    	</div>
+      
+      
+        <!--<div class="boost-pfs-filter-product-bottom">  -->
+          	
+         	 [[itemVendor]]
+          
+            <a href="[[itemUrl]]" class="boost-pfs-filter-product-item-title">
+              [[itemTitle]]
+          	</a>
+          
+          	<div class="bottom-price-add">
+          		[[itemStock]]
+              
+                [[itemPrice]]
+
+                [[addProductSoldOut]]
+          
+          	</div>
+                    
+        <!-- </div> -->
+    
+    	[[capturerProductSoldOut]]
+
+	
+       
+    </div>  
+  	  
+</div>
+<script>
+  
+  $(document).ready(function(){
+
+    var proID = [[itemId]];
+    var vendor = '{{ product.vendor }}';
+    var varID = [[itemIdVar]];
+    
+    $('#agregar-'+proID).click(function(){
+        /*
+		console.log("Click en #agregar-"+proID);
+      	//var preventa = false;
+        var preventa = $('#isPre-'+proID).val();
+      	
+        console.log("preventa: "+preventa);
+      
+        if(preventa=='YesPrev'){
+			//Mostrarpopup
+          	console.log("Debería Mostrar PopUp #modalPreventa-"+proID);
+            $('#modalPreventa-'+proID).show();	
+        }
+        else{
+          add();
+          $('#minicart').addClass('show');       
+        }
+      */
+      
+        console.log("proID: "+proID);
+        console.log("[[itemVendor]]: "+[[itemVendor]]);
+        add(proID);
+        $('#minicart').addClass('show');    
+      
+         
+    });  
+    
+	$('#confirmarAgregar-'+proID).click(function(){    
+      	//add();
+        //$('#minicart').addClass('show');    
+        $('.container-popup').hide();	
+    });
+    
+        
+	function add(idProd){
+      
+      //---------------
+        console.log("proID dentro de add: "+idProd);
+        console.log("collection: {{collection.title}}");
+        var preventa = $('#isPre-'+idProd).val();      	
+        console.log("preventa: "+preventa);
+      console.log("vendor: "+vendor);
+        if(preventa=='YesPrev' || vendor=='Bibs'){
+          console.log("mostrar modal");
+        	$('#modalPreventa-'+idProd).show();
+        } 
+      //--------------
+      
+      
+      window.alert = function() {};      
+      var proID =  [[itemIdVar]];
+      console.log("Añade el id: "+proID);
+      var cantidad = $('.cantidad-select').val();
+      jQuery.get("/cart.js", function(data){ 
+        console.log(data.items);
+        var obj = data.items;
+        for(var i=0;i<obj.length;i++)
+        {
+          var varianteID = obj[i]["variant_id"];
+          var varianteStock = obj[i]["quantity"];
+          var comCart = varianteID + varianteStock;
+        }
+      }, 'json');    
+      
+      Shopify.addItem(proID, cantidad, function(){  
+        
+        $('#minicart .middle ul').empty();
+        $("#minicart .cifra").empty();
+
+        jQuery.get("/cart.js", function(data){ 
+          console.log(data.items);
+          var obj = data.items;
+          for(var i=0;i<obj.length;i++)
+          {
+            var titulo = obj[i]["product_title"];
+            var varianteID = obj[i]["variant_id"];
+            var variante1 = obj[i]["variant_title"];
+            if (variante1 == null) {
+              var variante = "";
+            } else {
+              var variante = variante1;
+            }
+            var precio1 = parseFloat(obj[i]["price"]);
+            var precio2 = precio1.toString();
+            var precio3 = precio2.substring(0, precio2.length - 2);
+            var precio = precio3.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.");
+            console.log(precio);
+
+            var cantidad = obj[i]["quantity"];
+            var imagen = obj[i]["image"];
+
+            var proMini = "<li><div class='left'><h4>"+titulo+"</h4><h6>Cantidad: <span>"+cantidad+"</span></h6><h5>$"+precio+"</h5><i data-id='" + varianteID + "' class='quitar'></i></div><div class='right'><img src='"+imagen+"' alt='' /></div></li>";
+
+            $("#minicart .middle ul").append(proMini);
+
+            $('#minicart .middle .left i.quitar').click(function(){
+              console.log('varianteID: ' + varianteID);
+              var borrarID = $(this).data('id');
+              Shopify.removeItem(borrarID, function(){
+                console.log('borrado!');
+              });
+              $(this).parent().parent().fadeOut(200);
+            });
+
+          }
+        }, 'json');
+
+        jQuery.get("/cart.js", function(data){ 
+          console.log(data);
+          var total1 = data.total_price;
+          var total2 = total1.toString();
+          var total3 = total2.substring(0, total2.length - 2);
+          var total = total3.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.");
+
+          var itemcount = data.item_count;
+
+          console.log(total);
+          $("#minicart .cifra").append('$'+total);
+          $("header .icons li a.cart .count").html(itemcount);
+        }, 'json');
+
+        $('#minicart').addClass('show');
+
+      }); 
+    }
+
+  });  
+
+</script>
+
+{%- when 'productListItemHtml' -%}
+<div class="boost-pfs-filter-product-item boost-pfs-filter-product-item-list [[soldOutClass]][[saleClass]] [[itemActiveSwapClass]]">
+    productListItemHtml
+  	<div class="boost-pfs-filter-product-item-list-col-1">
+        <div class="boost-pfs-filter-product-item-image">
+            <div class="boost-pfs-filter-product-item-label">[[itemLabels]][[itemTagLabels]]</div>
+            [[itemImages]]
+        </div>
+    </div>
+    <div class="boost-pfs-filter-product-bottom">
+        <a href="[[itemUrl]]" class="boost-pfs-filter-product-item-title">[[itemTitle]]</a>
+        [[itemVendor]]
+        [[itemReviewHtml]]
+        [[itemPrice]]
+        <p class="boost-pfs-filter-des">[[itemDescription]]</p>
+        [[itemColorSwatches]]
+    </div>
+</div>
+{%- when 'productListPlaceholderHtml' -%}
+<div class="boost-pfs-filter-product-item boost-pfs-filter-product-item-list [[class.filterProductSkeleton]]">
+  productListPlaceholderHtml
+  <div class="boost-pfs-filter-product-item-list-col-1">
+    <div class="boost-pfs-filter-product-item-image">
+      <div class="[[class.filterProductSkeleton]]-image" style="padding-top: [[paddingTop]]%"></div>
+    </div>
+  </div>
+  <div class="boost-pfs-filter-product-bottom">
+    <a href="#" class="boost-pfs-filter-product-item-title"><span class="boost-pfs-filter-skeleton-text boost-pfs-filter-skeleton-width4"></span></a>
+    <p class="boost-pfs-filter-product-item-vendor"><span class="boost-pfs-filter-skeleton-text boost-pfs-filter-skeleton-width1"></span></p>
+    <p class="boost-pfs-filter-product-item-price"><span class="boost-pfs-filter-skeleton-text boost-pfs-filter-skeleton-width2"></span></p>
+    <p class="boost-pfs-filter-des">
+      <span class="boost-pfs-filter-skeleton-text" style="width: 100%"></span><br />
+      <span class="boost-pfs-filter-skeleton-text" style="width: 100%"></span><br />
+      <span class="boost-pfs-filter-skeleton-text" style="width: 100%"></span><br />
+      <span class="boost-pfs-filter-skeleton-text" style="width: 30%"></span>
+    </p>
+  </div>
+</div>
+
+{%- when 'soldOutLabelHtml' -%}
+<span class="soldout boost-pfs-filter-label"> {{ section.settings.soldout_label }} </span>
+
+{%- when 'saleLabelHtml' -%}
+<span class="sale boost-pfs-filter-label"> {{ section.settings.sale_label }} </span>
+
+{%- when 'tagLabelHtml' -%}
+<span class="tag boost-pfs-filter-label [[labelTag]]" >[[labelTag]]</span>
+
+{%- when 'vendorHtml' -%}
+<p class="boost-pfs-filter-product-item-vendor">[[itemVendorLabel]]</p>
+
+{%- when 'previousActiveHtml' -%}
+<li><a href="[[itemUrl]]"> <img src="https://cdn.shopify.com/s/files/1/0262/7046/6134/t/17/assets/flecha-izq.png?v=1608320872" alt="flecha-izquierda" /></a></li>
+
+{%- when 'previousDisabledHtml' -%}
+<li class="boost-pfs-filter-pagination-disabled">
+  <span>
+    <img src="https://cdn.shopify.com/s/files/1/0262/7046/6134/t/17/assets/flecha-izq.png?v=1608320872" alt="flecha-izquierda" />
+  </span>
+</li>
+
+{%- when 'nextActiveHtml' -%}
+<li><a href="[[itemUrl]]"><img src="https://cdn.shopify.com/s/files/1/0262/7046/6134/t/17/assets/flecha-der.png?v=1608321240" alt="flecha-derecha" /></a></li>
+
+{%- when 'nextDisabledHtml' -%}
+<li class="boost-pfs-filter-pagination-disabled">
+  <span>
+    <img src="https://cdn.shopify.com/s/files/1/0262/7046/6134/t/17/assets/flecha-der.png?v=1608321240" alt="flecha-derecha" />
+  </span>
+</li>
+
+{%- when 'pageItemHtml' -%}
+<li><a href="[[itemUrl]]">[[itemTitle]]</a></li>
+
+{%- when 'pageItemSelectedHtml' -%}
+<li><span class="boost-pfs-filter-pagination-active">[[itemTitle]]</span></li>
+
+{% when 'pageItemRemainHtml' %}
+<li><span>[[itemTitle]]</span></li>
+
+{%- when 'paginateHtml' -%}
+<ul>[[previous]][[pageItems]][[next]]</ul>
+
+{%- when 'sortingHtml' -%}
+<button class="boost-pfs-filter-top-sorting-wrapper"><span><span> {% assign temp = 'collections.sorting.title' | t  %} {% unless temp contains 'translation missing'  %} {{ temp }} {% else %} Sorting {% endunless %}, </span></span></button><ul class="boost-pfs-filter-filter-dropdown">[[sortingItems]]</ul>
+
+{%- when 'showLimitHtml' -%}
+<label> Show </label><select class="boost-pfs-filter-filter-dropdown">[[showLimitItems]]</select>
+
+{%- when 'breadcrumbHtml' -%}
+<a href="/"> Home </a> [[breadcrumbDivider]] [[breadcrumbItems]]
+
+{%- when 'breadcrumbDivider' -%}
+<span class="divider">/</span>
+
+{%- when 'breadcrumbItemLink' -%}
+<a href="[[itemLink]]">[[itemTitle]]</a>
+
+{%- when 'breadcrumbItemSelected' -%}
+<span>[[itemTitle]]</span>
+
+{%- endcase -%}
+{%- endcapture -%}
+
+{%- assign str = '}}' -%}
+{{- bc_layout | json | replace: '[[', '{{' | replace: ']]', str -}}

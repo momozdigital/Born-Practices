@@ -1,0 +1,38 @@
+<section class="menu" role="navigation">
+  
+  {% for link in site-nav2.links %}
+  
+    {% assign child_list_handle2 = link.title | handleize %}
+    
+    {% if linklists[child_list_handle2].links != blank %}
+      
+  	 <div class="site-nav--has-dropdown{% if link.active %} site-nav--active{% endif %}" aria-haspopup="true">
+        <a href="{{ link.url }}" class="">
+          {{ link.title }}
+        </a>
+       
+        <section class="sub-menu" id="{{ child_list_handle2 }}">
+          
+          {% for childlink2 in linklists[child_list_handle2].links %}
+                     
+            <div{% if childlink2.active %} class="site-nav--active"{% endif %}>
+              <a href="{{ childlink2.url }}" class="">{{ childlink2.title | escape }}</a>
+            </div>
+          
+          {% endfor %}
+          
+        </section>
+       
+      </div>
+    
+    {% else %}
+  
+      <div {% if link.active %}class="site-nav--active"{% endif %}>
+        <a href="{{ link.url }}" class="">{{ link.title }}</a>
+      </div>
+  
+    {% endif %}
+  
+  {% endfor %}
+  
+</section>

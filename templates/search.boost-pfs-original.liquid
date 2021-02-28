@@ -1,0 +1,60 @@
+<div class="featured-collection search-results {% if search.results_count > 0 %}result-lists{% endif %}">
+  {% if search.results_count > 0 %}
+	    <h2 class="h3">Los resultados de tu búsqueda son:</h2>
+    {% endif %}
+  <div class="clear">
+
+    {% comment %}
+    search.performed is false when accessing the /search page without a 'q' parameter set
+    in the URL. A shop-owner can link to the /search page from one of his link lists.
+    It is important to show a search form on that page if search.performed is false.
+    {% endcomment %}
+    
+    
+
+    {% if search.performed %}
+
+      {% paginate search.results by 10 %}
+
+        {% comment %}
+        Common pitfall to avoid: search.results should never be accessed before the opening 
+        paginate tag. Move the opening and closing paginate tags to the very top and bottom of your
+        search.liquid template if you need to.
+        If you fail to do the above, the pagination of search results will be broken.
+        search.results_count is fine to access in or out of the paginate block.
+        {% endcomment %}
+
+        {% if search.results_count == 0 %}  
+          <div class="not">
+            <h2 class="h3">Lo sentimos</h2>
+             <p>Tu búsqueda no ha generado ningún resultado.<br>
+             Puedes intentar nuevamente o navegar por nuestras colecciones</p>
+            <form action="/search" method="get" class="" role="search">
+              <input name="q" type="search" id="search-field" placeholder="Buscar Producto" value="{{ search.terms | escape }}" />
+              <button type="submit" class="btn btn-success"> </button>
+            </form>
+          </div>
+        {% else %}
+          <ul class="{% if search.results_count > 0 %}grid{% endif %}">
+            {% for product in search.results %}      
+			{% if product.available %}
+                	{% include 'product-item' %}
+			{% endif %}
+            {% endfor %}
+          </ul>
+        {% endif %}    
+
+        {% if paginate.pages > 1 %}
+          {% include 'pagination' %}
+        {% endif %}
+
+      {% endpaginate %}    
+
+    {% endif %}
+    
+    <div class="margin-top: 30px;">
+      <!-- Powered by DataCue [https://www.datacue.co/] -->
+    <div data-dc-products></div>
+  
+  </div>
+</div>

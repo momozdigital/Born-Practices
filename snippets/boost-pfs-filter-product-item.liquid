@@ -1,0 +1,214 @@
+{% assign on_sale = false %}
+{% if product.compare_at_price > product.price %}
+  {% assign on_sale = true %}
+{% endif %}
+
+<li class="item {% unless product.available %} sold-out{% endunless %}{% if on_sale %} on-sale{% endif %}">
+
+  <a href="{{ product.url | within: collection }}">
+    <div class="img" style="background-image: url({{ product | img_url: 'grande' }});">
+
+      {% if on_sale %}
+        <span class="descuento">
+          Oferta
+        </span>
+        <span class="porcentaje">
+            {% if product.price_varies %}
+            <span data-compare1="{{ product.compare_at_price_min }}" data-compare2="{{ product.price_min }}"></span>
+            {{ product.compare_at_price_min | minus: product.price_min | times: 100.0 | remove: '.0' | divided_by: product.compare_at_price_min }}% OFF
+            {% else %}
+            <span data-2compare1="{{ product.compare_at_price }}" data-2compare2="{{ product.price }}"></span>
+            {{ product.compare_at_price | minus: product.price | times: 100.0 | remove: '.0' | divided_by: product.compare_at_price }}% OFF
+            {% endif %}
+        </span>
+      {% endif %}
+      
+    </div>
+  
+    <h3>{{ product.title }}</h3>
+    
+    <h4>{{ product.vendor }}</h4>
+    
+    {% if product.variants.first.inventory_management == "shopify" and product.variants.first.inventory_quantity > 5 %}
+    <div class="remain">
+      <p class="texto">
+
+      </p>
+    </div>
+    {% elsif product.variants.first.inventory_management == "shopify" and product.variants.first.inventory_quantity == 1 %}
+    <div class="remain">
+      <p class="texto">
+        Queda sólo 1 unidad
+      </p>
+    </div>
+    {% elsif product.variants.first.inventory_management == "shopify" and product.variants.first.inventory_quantity < 1 %}
+    
+    {% elsif product.variants.first.inventory_management != "shopify" and product.variants.first.inventory_quantity < 1 %}
+    
+    {% else %}
+    <div class="remain">
+      <p class="texto">
+        Quedan sólo {{ product.variants.first.inventory_quantity }} unidades
+      </p>
+    </div>
+    {% endif %}
+    
+    {% unless product.available %}
+    <p class="agotado">Agotado</p>
+    {% endunless %}
+
+    <p class="price {% if on_sale %}sale{% endif %}">
+      {% if product.price_varies %}Desde{% endif %}
+      CLP {{ product.price | money }} {% if on_sale %}<span>CLP {{ product.compare_at_price | money }}</span>{% endif %}
+    </p>
+    
+    <span id="agregar-{{ product.id }}" class="ver-producto {% if product.available %}add-product-cart {% else %}ver-agotado{% endif %}">
+    <!--<span id="agregar-{{ product.id }}" class="ver-producto {% unless product.available %}ver-agotado{% endunless %}">-->
+      ver producto
+    </span>
+    
+    
+    
+    <span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span>
+  </a>
+  {% if product.available %}
+  
+    <a id="clickCapturerAdd-{{ product.id }}" class="clickCapturerAdd hideClickCapturer">
+      &nbsp;&nbsp;
+    </a>
+    <a class="clickCapturerAdd">&nbsp;&nbsp;
+    </a>
+  
+  
+  {% else %}
+  
+  <a href="#" class="BIS_trigger" data-product-data="{{ product | json | escape }}">
+    ¿Quieres que te notifiquemos<br>cuando esté disponible?
+  </a>
+  
+  <a id="clickCapturer" href="#" class="BIS_trigger" data-product-data="{{ product | json | escape }}">
+      ....
+  </a>
+  
+  {% endif %}
+  
+</li>
+
+  
+    <script>
+  
+  $(document).ready(function(){
+
+    var proID = {{ product.id }};
+    var varID = {% for variant in product.variants limit:1%}{{variant.id}}{% endfor%}
+        
+  
+    $('#clickCapturerAdd-'+proID).click(function(){
+      
+        console.log('#clickCapturerAdd-'+proID);
+        add();
+        //$('#minicart').addClass('show');
+      
+    });    
+        
+
+
+    function add(){
+      
+      window.alert = function() {};
+      
+      
+      var proID = {{ product.variants.first.id }};
+
+
+      var cantidad = $('.cantidad-select').val();
+    
+      
+      jQuery.get("/cart.js", function(data){ 
+        console.log(data.items);
+        var obj = data.items;
+        for(var i=0;i<obj.length;i++)
+        {
+
+          var varianteID = obj[i]["variant_id"];
+          var varianteStock = obj[i]["quantity"];
+          var comCart = varianteID + varianteStock;
+
+        }
+
+      }, 'json');
+    
+      
+      Shopify.addItem(proID, cantidad, function(){  
+        
+        $('#minicart .middle ul').empty();
+        $("#minicart .cifra").empty();
+
+        jQuery.get("/cart.js", function(data){ 
+          console.log(data.items);
+          var obj = data.items;
+          for(var i=0;i<obj.length;i++)
+          {
+
+            var titulo = obj[i]["product_title"];
+            var varianteID = obj[i]["variant_id"];
+            var variante1 = obj[i]["variant_title"];
+            if (variante1 == null) {
+              var variante = "";
+            } else {
+              var variante = variante1;
+            }
+
+            var precio1 = parseFloat(obj[i]["price"]);
+            var precio2 = precio1.toString();
+            var precio3 = precio2.substring(0, precio2.length - 2);
+            var precio = precio3.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.");
+            console.log(precio);
+
+            var cantidad = obj[i]["quantity"];
+            var imagen = obj[i]["image"];
+
+            var proMini = "<li><div class='left'><h4>"+titulo+"</h4><h6>Cantidad: <span>"+cantidad+"</span></h6><h5>$"+precio+"</h5><i data-id='" + varianteID + "' class='quitar'></i></div><div class='right'><img src='"+imagen+"' alt='' /></div></li>";
+
+            $("#minicart .middle ul").append(proMini);
+
+            $('#minicart .middle .left i.quitar').click(function(){
+              console.log('varianteID: ' + varianteID);
+              var borrarID = $(this).data('id');
+              Shopify.removeItem(borrarID, function(){
+                console.log('borrado!');
+              });
+              $(this).parent().parent().fadeOut(200);
+            });
+
+          }
+        }, 'json');
+
+        jQuery.get("/cart.js", function(data){ 
+          console.log(data);
+          var total1 = data.total_price;
+          var total2 = total1.toString();
+          var total3 = total2.substring(0, total2.length - 2);
+          var total = total3.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.");
+
+          var itemcount = data.item_count;
+
+          console.log(total);
+          $("#minicart .cifra").append('$'+total);
+          $("header .icons li a.cart .count").html(itemcount);
+        }, 'json');
+
+        $('#minicart').addClass('show');
+
+      });
+                  
+
+
+    }
+
+
+  });  
+
+
+
+</script>

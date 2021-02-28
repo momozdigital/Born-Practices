@@ -1,0 +1,70 @@
+
+<div class="clear account">
+	
+  <h2 class="home-title home-title-account">Mi Cuenta</h2>
+  
+  <div class="one-quarter small--one-whole">
+    
+    <ul class="sidemenu">
+      <li><a class="active" href="/account">Mis Pedidos</a></li>
+      <li><a href="/account/addresses">Mis Direcciones</a></li>
+      <li><a href="/account/logout">Cerrar Sesión</a></li>
+    </ul>
+    
+  </div>
+
+  <div class="three-quarter small--one-whole sideright">
+    <h2 class="sub-title">Mis Pedidos</h2>
+
+    {% comment %}
+      If we have past orders, loop through each one
+    {% endcomment %}
+
+    {% paginate customer.orders by 20 %}
+
+    {% if customer.orders.size != 0 %}
+
+      <div class="table-wrap">
+        <table class="full">
+          <thead>
+            <tr>
+              <th>Orden Nº</th>
+              <th>Fecha</th>
+              <th>Estado del pago</th>
+              <th>Estado de la orden</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for order in customer.orders %}
+              <tr>
+                <td><a target="_blank" href="{{ order.order_status_url }}">{{ order.name }}</a></td>
+                <!-- td>{{ order.name | link_to: order.customer_url }}</td --> 
+                <td>{{ order.created_at | date: "%b %d, %Y" }}</td>
+                <td>{{ order.financial_status_label }}</td>
+                <td>{{ order.fulfillment_status_label }}</td>
+                <td>{{ order.total_price | money }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+
+    {% else %}
+
+      <p>Aún no tienes pedidos</p>
+
+    {% endif %}
+
+    {% if paginate.pages > 1 %}
+      <div class="text-center">
+        {% include 'pagination-custom' %}
+      </div>
+    {% endif %}
+
+    {% endpaginate %}
+
+  </div>
+
+
+</div>

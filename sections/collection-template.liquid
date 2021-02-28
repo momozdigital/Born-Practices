@@ -1,0 +1,151 @@
+{{ 'ajaxinate.min.js' | asset_url | script_tag }}
+{{ 'sticky-kit.min.js' | asset_url | script_tag }}
+
+<div class="featured-collection grid">
+
+  <aside>
+	<!--
+    <div class="inner">
+      
+      <ul class="uno">
+      {% for link in linklists.menu-collection.links %}
+        <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+      {% endfor %}
+      </ul>
+      
+      <div class="fm">
+        {% include 'filter-menu' %}
+      </div>
+      
+    </div>
+    -->
+    <div class="boost-pfs-filter-left-col">
+      <div class="boost-pfs-filter-refine-by-wrapper-v"></div>
+      <div class="boost-pfs-filter-tree boost-pfs-filter-tree-v">{%- include 'boost-pfs-filter-skeleton', type: 'filter-tree' -%}</div>
+    </div>
+    
+  </aside>
+  
+  <div class="all-coll">
+
+  {% paginate collection.products by 24 %}
+
+    <ul class="grid boost-pfs-filter-products" id="AjaxinateLoop">
+    {% for product in collection.products %}
+    
+        {% include 'product-item' %}
+    
+    {% endfor %}
+    </ul>
+    
+    <!-- div id="AjaxinatePagination">
+      {% if paginate.next %}
+        <a class="boton boton-ajax" href="{{ paginate.next.url }}">Cargar más productos</a>
+      {% endif %}
+    </div -->
+    
+    {% if paginate.pages > 1 %}
+    	<div class="pagColl pagCollBottom">
+          {% include 'pagination' %}
+        </div>
+    {% endif %}
+	
+  {% endpaginate %}
+
+  </div>
+  
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  var endlessScroll = new Ajaxinate({
+    container: '#AjaxinateLoop',
+    pagination: '#AjaxinatePagination',
+    method: 'click',
+    loadingText: 'Cargando...',
+    callback: function(){
+      
+      $('.featured-collection ul .item.sold-out').remove();
+      
+      var botonTop = $('.featured-collection .boton-ajax').offset.top;
+      var offset = $('.featured-collection .boton-ajax').offset();
+      
+      console.log(offset.top);
+      
+      $([document.documentElement, document.body]).animate({
+        scrollTop: offset.top - 2800
+      }, 2000);
+      
+    }
+  });
+
+});  
+  
+$("aside .inner").stick_in_parent();  
+
+  
+</script>
+
+
+<script>   
+// Declare boostPFSThemeConfig
+var boostPFSThemeConfig = {     
+    label: {       
+      sorting: {% assign temp = 'collections.sorting.title' | t  %} {% unless temp contains 'translation missing'  %} {{ temp | json }} {% else %} "Sorting" {% endunless %},       
+      sorting_best_selling: {% assign temp = collection.sort_options[1].name %} {% unless temp == nil %} {{ temp | json }} {% else %} "Best Selling" {% endunless %},       
+      sorting_manual: {% assign temp = collection.sort_options[0].name %} {% unless temp == nil %} {{ temp | json }} {% else %} "Featured" {% endunless %},       
+      sorting_title_ascending: {% assign temp = collection.sort_options[2].name %} {% unless temp == nil %} {{ temp | json }} {% else %} "Alphabetically, A-Z" {% endunless %},       
+      sorting_title_descending: {% assign temp = collection.sort_options[3].name %} {% unless temp == nil %} {{ temp | json }} {% else %} "Alphabetically, Z-A" {% endunless %},       
+      sorting_price_ascending: {% assign temp = collection.sort_options[4].name %} {% unless temp == nil %} {{ temp | json }} {% else %} "Lowest Price" {% endunless %},       
+      sorting_price_descending: {% assign temp = collection.sort_options[5].name %} {% unless temp == nil %} {{ temp | json }} {% else %} "Highest Price" {% endunless %},       
+      sorting_date_ascending: {% assign temp = collection.sort_options[6].name %} {% unless temp == nil  %} {{ temp | json }} {% else %} "Date, Old to New" {% endunless %},       
+      sorting_date_descending: {% assign temp = collection.sort_options[7].name %} {% unless temp == nil  %} {{ temp | json }} {% else %} "Date, New to Old" {% endunless %},       
+      sorting_relevance: {% assign temp = 'collections.sorting.relevance' | t %} {% unless temp contains 'translation missing'  %} {{ temp | json }} {% else %} "Relevance" {% endunless %},        
+      sale: {{ 'products.product.on_sale' | t | json }},       
+      sale_price: {{ 'products.product.sale_price' | t | json }},       
+      sold_out: {{ 'products.product.sold_out' | t | json }},       
+      vendor: {{ 'products.product.vendor' | t |json }},       
+      regular_price: {{ 'products.product.regular_price' | t | json }},       
+      items_with_count_one: {{ 'collections.general.items_with_count.one' | t | json}},       
+      items_with_count_other: {{ 'collections.general.items_with_count.other' | t | json }},       
+      current_page: {{ 'general.pagination.current_page' | t | json }}, 
+    },     
+    custom: {       
+      // Add custom value here  
+      products_per_page: 20,   
+      product_grid_class: '',
+    }   
+  };// Declare Templates
+var boostPFSTemplate = {
+    'soldOutClass': ' sold-out',
+    'saleClass': ' on-sale',
+    'soldOutLabelHtml': {% render 'boost-pfs-filter-html', layout: 'soldOutLabelHtml' %},
+    'saleLabelHtml': {% render 'boost-pfs-filter-html', layout: 'saleLabelHtml' %},
+    'tagLabelHtml': {% render 'boost-pfs-filter-html', layout: 'tagLabelHtml' %},
+    'vendorHtml': {% render 'boost-pfs-filter-html', layout: 'vendorHtml' %},
+    // Grid Template
+    'productGridItemHtml': {% render 'boost-pfs-filter-html', layout: 'productGridItemHtml' %},
+    // For List View
+    // List Template
+    'productListItemHtml': {% render 'boost-pfs-filter-html', layout: 'productListItemHtml' %},
+    // End For List View
+    // Pagination Template
+    'previousActiveHtml': {% render 'boost-pfs-filter-html', layout: 'previousActiveHtml' %},
+    'previousDisabledHtml': {% render 'boost-pfs-filter-html', layout: 'previousDisabledHtml' %},
+    'nextActiveHtml': {% render 'boost-pfs-filter-html', layout: 'nextActiveHtml' %},
+    'nextDisabledHtml': {% render 'boost-pfs-filter-html', layout: 'nextDisabledHtml' %},
+    'pageItemHtml': {% render 'boost-pfs-filter-html', layout: 'pageItemHtml' %},
+    'pageItemSelectedHtml': {% render 'boost-pfs-filter-html', layout: 'pageItemSelectedHtml' %},
+    'pageItemRemainHtml': {% render 'boost-pfs-filter-html', layout: 'pageItemRemainHtml' %},
+    'paginateHtml': {% render 'boost-pfs-filter-html', layout: 'paginateHtml' %},
+    // Sorting Template
+    'sortingHtml': {% render 'boost-pfs-filter-html', layout: 'sortingHtml' %},
+    // Show Limit Template
+    'showLimitHtml': {% render 'boost-pfs-filter-html', layout: 'showLimitHtml' %},
+    // Breadcrumb Template
+    'breadcrumbHtml': {% render 'boost-pfs-filter-html', layout: 'breadcrumbHtml' %},
+    'breadcrumbDivider': {% render 'boost-pfs-filter-html', layout: 'breadcrumbDivider' %},
+    'breadcrumbItemLink': {% render 'boost-pfs-filter-html', layout: 'breadcrumbItemLink' %},
+    'breadcrumbItemSelected': {% render 'boost-pfs-filter-html', layout: 'breadcrumbItemSelected' %},
+};
+</script>

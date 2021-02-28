@@ -1,0 +1,74 @@
+{% if section.blocks.size > 0 %}
+
+<div class="atributos-comentarios">
+  
+    <div class="atributos"> 
+      
+        <div class="div-block-193">
+          
+            {% for block in section.blocks %}
+          	<a href="{{ block.settings.link }}" style="cursor: pointer;">
+              <div class="atributo">
+                 	
+                  {{ block.settings.image | img_url: 'master' | img_tag: block.settings.image.alt }}
+                	
+                  <h1 class="atributos-titulos">
+                      {{ block.settings.bajada }}
+                  </h1>
+                
+              </div>
+          	</a>
+            {% endfor %}
+          
+        </div>
+  	</div>
+</div>
+
+
+
+{% endif %}
+
+{% schema %}
+{
+  "name": "Atributos Compra",
+  "max_blocks": 4,
+  "blocks": [
+    {
+      "type": "image",
+      "name": "Slide",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link URL"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Title Block"
+        },
+        {
+          "type": "richtext",
+          "id": "bajada",
+          "label": "Text",
+		  "default": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Atributos Compra",
+      "category": "Text"
+    }
+  ]
+}
+{% endschema %}
+{% stylesheet %}
+{% endstylesheet %}

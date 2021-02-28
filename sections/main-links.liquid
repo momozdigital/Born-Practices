@@ -1,0 +1,70 @@
+{% assign index = section.blocks.size %}
+
+{% if section.blocks.size > 0 %}
+<div class="nav1 grid section-{{ section.id }}">
+  
+  {% for block in section.blocks %}
+  
+    <a href="{{ block.settings.link }}" class="item">
+      <h4>{{ block.settings.title }}</h4>
+      {{ block.settings.bajada }}
+    </a>
+  
+  {% endfor %}
+  
+</div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Main Links",
+  "class": "index-section",
+  "max_blocks": 4,
+  "blocks": [
+    {
+      "type": "text",
+      "name": "Slide",
+      "settings": [
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link URL"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Text",
+          "default": "Title Block"
+        },
+        {
+          "type": "textarea",
+          "id": "bajada",
+          "label": "Text",
+		  "default": "<p>Nueva colección Meri Meri FW 2019! Lorem ipsum sit.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Main Links",
+      "category": "Text",
+
+      "blocks": [
+        {
+          "type": "text"
+        },
+        {
+          "type": "text"
+        },
+        {
+          "type": "text"
+        },
+        {
+          "type": "text"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
